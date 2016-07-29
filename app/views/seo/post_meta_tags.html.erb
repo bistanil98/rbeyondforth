@@ -1,0 +1,196 @@
+<!--
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+<div class="">
+    <div style="">Website</div>
+    <a href="#" data-toggle="tooltip" class="tip-left" data-original-title="The following example displays an alert message to the user when fade out transition of the tooltip has been fully completed."><i class="glyphicon glyphicon-question-sign"></i></a>
+    <div><h4 style="margin-bottom:6px;"><%= @page.url %></h4></div>
+    <a href="#" data-toggle="tooltip" class="tip-left" data-original-title="The following example displays an alert message to the user when fade out transition of the tooltip has been fully completed."><i class="glyphicon glyphicon-question-sign"></i></a>
+</div>
+-->
+
+
+<div class="container-fluid">
+<div class="row well" id="r2">
+    <div class="col-md-12">
+        <div class="col-md-3"><h4>Website</h4></div>
+        <div class="col-md-9" id="font"><%= @page.url %></div>
+    </div>
+</div>
+
+    <div class="row well " id="r3">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Title</h4></div>
+            <div class="col-md-9" id="font"><%= @page.best_title %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r1">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Description</h4></div>
+            <div class="col-md-9" id="font"><%= @page.description %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Url</h4></div>
+            <div class="col-md-9" id="font"><%= @page.url %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r3">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Type</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tags['property']['og:type'] %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r1">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>SiteName</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tags['property']['og:site_name'] %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Image</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tags['property']['og:image']%></div>
+        </div>
+    </div>
+
+
+    <div class="row well" id="r3">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Keywords</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tag['name']['keywords']  %></div>
+        </div>
+    </div>
+</div>
+
+
+<div class="bs-example">
+<table class="table">
+    <tr class="success">
+        <th><h3>Meta tags</h3>
+            <pre><code><%= @page.meta_tags %></code></pre></th>
+    </tr>
+</table>
+
+<table class="table">
+    <tr class="danger">
+        <th><h3>Meta tags (shorter format)</h3>
+            <pre><code><%= @page.meta %></code></pre></th>
+    </tr>
+</table>
+</div>
+
+<!--
+<div class="bs-example">
+
+    <table class="table table-striped">
+        <thead>
+        <tr class="info">
+            <th><h4>Wesbsite</h4></th>
+            <th><h4 style="margin-bottom:6px;"><%= @page.url %></h4></th>
+        </tr>
+        </thead>
+    </table>
+
+
+    <table class="table table-striped">
+        <tbody>
+        <tr class="active">
+            <td></td>
+            <td><th>Title</th></td>
+            <td><%= @page.best_title %><i class="glyphicon glyphicon-question-sign"></i>
+                <a href="#" data-toggle="tooltip" class="tip-left" data-original-title="Tooltip on the left side"><i class="glyphicon glyphicon-question-sign"></i></a></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td><th>Description</th></td>
+            <td><%= @page.description %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td><th>Url</th></td>
+            <td><%= @page.url %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td><th>Type</th></td>
+            <td><%= @page.meta_tags['property']['og:type'] %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td><th>SiteName</th></td>
+            <td><%= @page.meta_tags['property']['og:site_name'] %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td><th>fbAdmin</th></td>
+            <td><%= @page.meta_tags['property']['fb:admins'] %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td><th>Charset</th></td>
+            <td><%= @page.charset%></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td><th>Content Type</th></td>
+            <td><%= @page.content_type %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td><th>Image</th></td>
+            <td><%= @page.meta_tags['property']['og:image']%></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td><th>Keywords</th></td>
+            <td><%= @page.meta_tag['name']['keywords']  %></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <table class="table">
+        <tr class="success">
+            <th><h3>Meta tags</h3>
+                <pre><code><%= @page.meta_tags %></code></pre></th>
+        </tr>
+    </table>
+
+    <table class="table">
+        <tr class="danger">
+            <th><h3>Meta tags (shorter format)</h3>
+                <pre><code><%= @page.meta %></code></pre></th>
+        </tr>
+    </table>
+
+</div>
+<div>
+</div>
+
+
+-->
+
+<script>
+    $(document).ready(function(){
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>

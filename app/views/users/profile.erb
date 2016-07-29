@@ -1,0 +1,75 @@
+<!--<%= bootstrap_form_for(:user) do |f| %>
+    <div class="field">
+        <%= f.file_field :image %>
+    </div>
+    <div class="actions">
+        <%= f.submit %>
+    </div>
+    <% end %> -->
+    <div class="col-lg-offset-1" >
+        <div class="row">
+            <div class="col-md-3">
+            <%= image_tag(session[:user_image], :alt => "user image",:class=>"img-circle id_img") %>
+                <!--<%= image_tag @user.image.url(:small), :alt => "user image", :class=>"img-circle id_img" %>-->
+            <div style="padding-top:5px;">
+                <%= link_to 'Change Picture', "#", data: {toggle: "modal", target: "#modalImage"} %>
+                <!--<button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalImage" >Change Picture</button>-->
+                <!--<%= link_to "Change Picture", users_edit_path(:id=>session[:user_id]) %>-->
+            </div>
+            </div>
+        <div class="col-md-5">
+        <div class="row">
+            Name: &nbsp;<%= @user.name %>
+        </div>
+        <div class="row">
+        <div class="" style="padding-top: 3px;">
+            Email: &nbsp;&nbsp;<%= @user.email %>
+        </div>
+        </div>
+        <div class="row" style="padding-top: 8px;">
+        <%= link_to "Edit", users_edit_path(:id=>session[:user_id]) %>
+        </div>
+       </div>
+     </div>
+   </div>
+
+    <div id="modalImage" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Upload Image</h4>
+            </div>
+            <div class="modal-body">
+                <p style="padding-left:40px; ">
+                <%= bootstrap_form_for :user,url:users_upload_image_path(:id=>@user),html: { multipart: true } do |f| %>
+                    <div class="field">
+                        <%= f.file_field :image %>
+                    </div>
+                    <div class="actions">
+                        <%= f.submit 'Upload' %>
+                    </div>
+                <% end %>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <!--<button type="button" class="btn btn-default"  data-dismiss="modal">Upload</button>-->
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    </div>
+<script>
+    <!--
+    $('#modalSend').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+    -->
+    $('#pdffile').change(function(){
+        $('#subfile').val($(this).val());
+    });
+</script>
+
+
+
+

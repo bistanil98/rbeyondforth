@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Rbeyondforth</title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <%= csrf_meta_tags %>
+
+</head>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.4&appId=613114152124395";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<body>
+<div>
+    <%= render "common/header" %>
+</div>
+<div>
+    <%= render "common/tab" %>
+    <%= render_breadcrumbs('>') %>
+
+</div>
+
+<div >
+    <div id="flash" class="container">
+        <% flash.each do |name, msg| %>
+            <%= content_tag :div, msg, class: "alert alert-info" %>
+        <% end %>
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-xs-3" style="padding-left:65px;">
+            <%= render "left_menu" %>
+        </div>
+        <div class="col-md-6 media well ">
+        <%= yield %>
+        </div>
+    </div>
+</div>
+
+<div>
+    <%= render "common/footer" %>
+</div>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function(){
+        setTimeout(function(){
+            $('#flash').slideUp();
+        }, 7000);
+    })
+</script>
+</html>

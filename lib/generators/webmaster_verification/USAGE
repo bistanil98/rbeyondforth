@@ -1,0 +1,8 @@
+Description:
+    Explain the generator
+
+Example:
+    rails generate webmaster_verification Thing
+
+    This will create:
+        what/will/it/create

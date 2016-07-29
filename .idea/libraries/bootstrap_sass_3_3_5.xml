@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="bootstrap-sass-3.3.5">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$PROJECT_DIR$/lib/bootstrap-sass-3.3.5.1" />
+    </SOURCES>
+  </library>
+</component>

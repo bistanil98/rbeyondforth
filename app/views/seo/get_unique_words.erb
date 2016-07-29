@@ -1,0 +1,11 @@
+<div class=" well">
+    <h3 style="text-decoration:underline; padding-left:20px;">Generate unique words</h3>
+    <%= bootstrap_form_for(:seo, inline_errors: true,url:seo_post_unique_words_path, layout: :horizontal) do |f| %>
+        <%= f.text_field :site_uri  , control_col: "col-sm-8" , placeholder: "Put web site Url" %>
+        <%= f.errors_on :site_uri  , control_col: "col-sm-6" %>
+        <%= f.form_group do %>
+            <%= f.submit "Submit", class: "btn btn-success"%>
+        <% end %>
+    <% end %>
+
+</div>

@@ -1,0 +1,13 @@
+adwords = AdwordsApi::Api.new({
+  :authentication => {
+      :method => 'OAuth2',
+      :oauth2_client_id => '1002663303461-etsitapfis57fc1i2a6i12qul98brlgq.apps.googleusercontent.com',
+      :oauth2_client_secret => 'ON9v4ijbmcjCuyru9MWrvJ4l',
+      :developer_token => 'DEVELOPER_TOKEN',
+      :client_customer_id => '012-345-6789',
+      :user_agent => 'Rails Samples'
+  },
+  :service => {
+    :environment => 'DEVELOPMENT'
+  }
+})

@@ -1,0 +1,39 @@
+<div class="container-fluid">
+    <div class="row well" id="r2">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Website</h4></div>
+            <div class="col-md-9" id="font"><%= @page.url %></div>
+        </div>
+    </div>
+
+    <div class="row well " id="r">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Title</h4></div>
+            <div class="col-md-9" id="font"><%= @page.best_title %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r1">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Url</h4></div>
+            <div class="col-md-9" id="font"><%= @page.url %></div>
+        </div>
+    </div>
+
+    <div class="row well">
+        <div class="col-md-12" >
+            <div class="col-md-3"><h4>fbAdmin</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tags['property']['fb:admins'] %></div>
+        </div>
+    </div>
+
+    <div class="row well" id="r">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Keywords</h4></div>
+            <div class="col-md-9" id="font"><%= @page.meta_tag['name']['keywords']  %></div>
+        </div>
+    </div>
+</div>
+
+<div style="padding-bottom: 30px; ">
+</div>

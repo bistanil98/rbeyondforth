@@ -1,0 +1,23 @@
+<h2>Edit Profile</h2>
+<div class="container">
+<div class="col-xs-8 col-md-5">
+    <%= bootstrap_form_for :user, url:users_update_path(:id=>@user) do |f| %>
+        <p>
+            <%= f.text_field :name , class: "modify-form-control" %>
+        </p>
+
+        <p>
+            <%= f.text_field :email, class: "modify-form-control" %>
+        </p>
+
+        <p>
+            <%= f.password_field :password, class: "modify-form-control" %>
+        </p>
+
+        <p>
+            <%= f.submit 'Update' %>
+        </p>
+    <% end %>
+
+</div>
+</div>

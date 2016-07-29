@@ -1,0 +1,6 @@
+    <?xml version="1.0" encoding="UTF-8"?>
+        WebmasterTools::Sitemaps::Defaults.host = case RAILS_ENV
+        when "production": "rbeyondforth.com"
+        else "localhost:3000"
+        end
+

@@ -1,0 +1,285 @@
+
+
+<div class="bs-example" >
+
+
+    <div class="pull-right" style="padding-bottom:8px;">
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCompose" >Send Suggestion</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalSend" >Compose Mail</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalExport">Export-Pdf/Excel</button>
+
+    </div>
+
+    <div style="padding-bottom:33px;">
+    </div>
+
+    <div class="container-fluid">
+        <div class="row well" id="r2">
+            <div class="col-md-12">
+                <div class="col-md-3"><h4>Website</h4></div>
+                <div class="col-md-9" id="font"><%= @page.url %></div>
+            </div>
+        </div>
+
+        <div class="row well" id="r">
+            <div class="col-md-12">
+                <div class="col-md-3"><h4>W3C Validation</h4></div>
+                <div class="col-md-9" id="font">Errors</div>
+            </div>
+        </div>
+    </div>
+<!--
+    <table class="table table-striped">
+        <thead>
+        <tr class="info">
+            <th></th>
+            <th><h4 style="padding-right:90px; padding-left:8px;">Website</h4></th>
+            <th><h4><%= @page.url %></h4></th>
+            <th></th>
+        </tr>
+        </thead>
+    </table>
+-->
+    <!-- W3c validation errors -->
+    <% if  @results.errors.length > 0
+         @results.errors.each do |err| %>
+            <div>
+          <!--  <div class="panel panel-default part_margin" style="border: 1px solid #f5f5f5;"> -->
+
+                <table class="table  well" style="margin-top:-6px; margin-bottom:-6px;">
+                    <tr style="margin-top:-15px;" class="tab_head ">
+
+                          <td><%= err %></td>
+
+                    </tr>
+                 </table>
+
+            </div>
+        <%  end
+            else
+              puts 'Valid!'
+            end %>
+  <div class="clearfix"></div>
+</div>
+<div style="padding-bottom:40px;">
+
+</div>
+
+
+<!-- modal pop up for compose suggestion -->
+
+<div class="modal fade" id="modalCompose">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Compose Suggestion</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom:2px;">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2" for="inputTo">To</label>
+                        <div class="col-sm-10"><input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2" for="inputSubject">Subject</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" id="inputSubject" placeholder="subject"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12" for="inputBody">Suggestion</label>
+                        <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="10"></textarea></div>
+                    </div>
+                    <div class="form-group" >
+                    <input type="file" name="file" style="visibility:hidden;" id="pdffile" /><br/>
+                        <label class="col-sm-2" for="inputTo">Attach file</label>
+                    <div class="input-append col-sm-10">
+                        <input type="text" name="subfile" id="subfile" class="input-xlarge">
+                        <a class="btn" onclick="$('#pdffile').click();">Browse</a>
+                    </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning pull-left">Save Draft</button>
+                <button type="button" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>
+
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal compose message -->
+
+<script>
+    <!--
+$('#modalCompose').on('shown.bs.modal', function () {
+$('#myInput').focus()
+})
+    -->
+$('#pdffile').change(function(){
+    $('#subfile').val($(this).val());
+});
+</script>
+
+<!-- end of modal popup compose -->
+
+<!-- modal pop up for export files -->
+
+<div id="modalExport" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Export Files</h4>
+            </div>
+            <div class="modal-body">
+                <p style="padding-left:40px; ">
+                    <%= link_to 'Export PDf file', seo_download_pdf_path, :class => 'btn btn-primary'%>
+                    <%= link_to 'Export Excel file' ,seo_download_path(format: 'xlsx'), :class => 'btn btn-primary'%>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- pop up for export files close -->
+
+
+<!-- modal pop up for send suggestion -->
+<!--
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">New Suggestion</h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="recipient-name" class="control-label">Recipient:</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="message-text" class="control-label">Message:</label>
+                        <textarea class="form-control" id="message-text"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Send message</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#exampleModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Button that triggered the modal
+        var recipient = button.data('whatever') // Extract info from data-* attributes
+        // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+        // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+        var modal = $(this)
+        modal.find('.modal-title').text('New message to ' + recipient)
+        modal.find('.modal-body input').val(recipient)
+    })
+</script>
+-->
+<!-- modal pop up for send email -->
+<div id="modalSend" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Compose Email</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-sendmail">
+                    <%= form_tag users_forgot_password_send_email_path  do %>
+                        <div>
+                        <%= label_tag :To %></br>
+                            <%=  email_field_tag 'email',  'example@email.com', size: 45 %></br></br>
+                            <%= label_tag :Subject %></br>
+                            <%= text_field_tag 'address', '', size: 45 %></br></br>
+                            <%= label_tag :Message %></br>
+                            <%= text_area_tag 'body', nil, rows: 10, cols: 60 %></br></br>
+                            <%= label_tag :Attach_file %></br>
+                            <%= file_field_tag :file %>
+                            <!-- <%= submit_tag "Upload" %>-->
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                             <%= submit_tag 'Compose Mail',:class=> "btn btn-primary pull-right" %>
+                             </div>
+                        </div>
+                <% end %>
+                </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+            <!--
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--
+<div class="modal fade" id="modalSend">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Compose Suggestion</h4>
+            </div>
+            <div class="modal-body" style="padding-bottom:2px;">
+                <form role="form" class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2" for="inputTo">To</label>
+                        <div class="col-sm-10"><input type="email" class="form-control" id="inputTo" placeholder="comma separated list of recipients"></div>
+
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2" for="inputSubject">Subject</label>
+                        <div class="col-sm-10"><input type="text" class="form-control" id="inputSubject" placeholder="subject"></div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-12" for="inputBody">Suggestion</label>
+                        <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="10"></textarea></div>
+                    </div>
+                    <div class="form-group" >
+                        <input type="file" name="file" style="visibility:hidden;" id="pdffile" /><br/>
+                        <label class="col-sm-2" for="inputTo">Attach file</label>
+                        <div class="input-append col-sm-10">
+                            <input type="text" name="subfile" id="subfile" class="input-xlarge">
+                            <a class="btn" onclick="$('#pdffile').click();">Browse</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-warning pull-left">Save Draft</button>
+                <div class="actions" ><%= submit_tag "Send", :class=> "btn btn-primary" %><i class="fa fa-arrow-circle-right fa-lg"></i></div>
+
+                <!--<button type="button" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></button>-->
+         <!--   </div>
+        </div><!-- /.modal-content -->
+ <!--   </div><!-- /.modal-dialog -->
+<!--</div><!-- /.modal compose email -->
+<script>
+    <!--
+    $('#modalSend').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    })
+    -->
+    $('#pdffile').change(function(){
+        $('#subfile').val($(this).val());
+    });
+</script>
+
+<!-- end of modal send email -->

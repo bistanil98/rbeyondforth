@@ -1,0 +1,77 @@
+<script  type="text/javascript">
+    $(document).on('click','.click', function (e) {
+        var del=$(this).attr('name');
+        showPageDetail(del);
+    });
+    // function ends here
+    function showPageDetail(del){
+        $.ajax({
+            type: 'get',
+            cache: false,
+            url:"http://localhost:3000/social_media/fb_page_display/?id="+del,
+            dataType: 'html',
+            success: function(data){
+                if(data.success == false)
+                {
+                    var arr = data.errors;
+                    $.each(arr, function(index, value)
+                    {
+                        alert(value);
+                    });
+                }
+                else {
+                    $("#fb_data").html(data);
+                    //alert('zzzzzz');
+                    /* window.location.assign("show")*/
+                }
+            },
+            error: function(xhr, textStatus, thrownError) {
+                alert('Something went to wrong.Please Try again later...');
+            }
+        });
+    }
+
+</script>
+<h2 class="col-md-offset-1">FaceBook</h2>
+
+<div class="container">
+
+
+    <div class="col-lg-4 well" >
+        <h4 style="text-decoration: underline;">
+            <%= link_to 'My Wall', social_media_index_path %>
+        </h4>
+        <h5 style="text-decoration: underline">My Pages</h5>
+        <% for facebook_page in @fb_pages %>
+            <div>
+                <%= link_to facebook_page["name"], "javascript:void(0)",id:"fb_pages_"+facebook_page['id'], name: facebook_page["access_token"],class: "click"  %>
+            </div>
+        <% end %>
+    </div>
+
+    <div  class="col-lg-8">
+        <div>
+            <%= bootstrap_form_for :social_media, url:@action_path+'?id='+@id do |f| %>
+                <div>
+                    <%= f.text_area :message %>
+                </div>
+
+                <div>
+                    <%= f.submit  "Post On wall", class:"btn btn-primary "%>
+                </div>
+            <% end %>
+        </div>
+        <div style="height:6px;"></div>
+    <div id="fb_data">
+        <%= render partial: 'fb_data' %>
+    </div>
+
+
+    </div>
+</div>
+
+<!--<a href="1" title="vote" class="vote" >Up Vote</a>-->
+<!--<br>-->
+<!--<div class="result"></div>-->
+
+

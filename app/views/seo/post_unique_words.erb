@@ -1,0 +1,16 @@
+<div class="bs-example">
+    <table class="table">
+        <tr class="success">
+            <th><h3>Generate Words</h3>
+                <% @list.each_word do |word| %>
+                <pre><code><%= word %></code></pre>
+                <% end %>
+            </th>
+        </tr>
+    </table>
+  </div>
+<!--
+<% @list.each_word do |word| %>
+    <%= word %>
+<% end %>
+    -->

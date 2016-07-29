@@ -1,0 +1,2 @@
+module RailsTest
+end

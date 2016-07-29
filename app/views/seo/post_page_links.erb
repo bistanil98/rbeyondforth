@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class="row well" id="r2">
+        <div class="col-md-12">
+            <div class="col-md-3"><h4>Website</h4></div>
+            <div class="col-md-9" id="font"><%= @page.url %></div>
+        </div>
+    </div>
+
+    <h3>Internal Links:</h3>
+    <div class="row well " id="r">
+        <div class="col-md-12" id="font">
+            <% if @page.links.internal.any? %>
+                <ul>
+                    <% @page_links_internal.each do |result| %>
+                        <li style="list-style-type: none "><%= result %></li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div>
+    </div>
+
+    <h3>External Links:</h3>
+    <div class="row well " id="r3">
+        <div class="col-md-12" id="font">
+            <% if @page.links.external.any? %>
+                <ul>
+                    <% @page_links_external.each do |result| %>
+                        <li style="list-style-type: none "><%= result %></li>
+                    <% end %>
+                </ul>
+            <% end %>
+        </div>
+    </div>
+
+</div>
+
+<div style="padding-bottom: 40px;">
+</div>

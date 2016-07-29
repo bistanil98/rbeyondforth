@@ -1,0 +1,217 @@
+<div class="container-fluid">
+<div class="row well" id="r2">
+    <div class="col-md-12">
+        <div class="col-md-3"><h4>Website</h4></div>
+        <div class="col-md-9" id="font"><%= @page.url %></div>
+    </div>
+</div>
+</div>
+<div class="bs-example">
+
+    <h3>Site Rank</h3>
+    <table class="table well">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Domain</th>
+            <th>Rank</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active">
+            <td></td>
+            <td>Google Site Rank</td>
+            <td><%= @seo_google_page_rank %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td>Seo Alexa PageRank</td>
+            <td><%= @seo_alexa_pagerank %></td>
+            <td></td>
+        </tr>
+
+        </tbody>
+    </table>
+</div>
+<!--
+<div class="container">
+    <div class="row" style="padding-left:55px; margin-bottom:10px; max-height:35px; background-color: lightskyblue;">
+        <div class="col-lg-6">
+            <h4>Website Name</h4>
+        </div>
+        <div class="col-lg-6">
+            <h4>www.soarlogic.com</h4>
+        </div>
+    </div>
+    <h3 style="margin-top:3px;">Site Rank</h3>
+    <div class="row" style="padding-left:80px; background-color: lightskyblue;">
+        <div class="col-lg-6">
+            <strong class="head_size">Domain</strong>
+        </div>
+        <div class="col-lg-6">
+            <strong class="head_size">Rank</strong>
+        </div>
+    </div>
+    <div class="row" style="background-color: #F4F4F4; padding-left:80px;">
+        <div class="col-lg-6 active">
+
+            <h4>Google Site Rank</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_google_page_rank %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color:lightcyan;">
+        <div class="col-lg-6" >
+            <h4>Seo alexa pagerank </h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_alexa_pagerank %>
+        </div>
+    </div>
+
+</div><!-- Seo Ranking and Indexing -->
+
+<div class="bs-example">
+    <h3>Page Index</h3>
+    <table class="table well">
+        <thead>
+        <tr>
+            <th></th>
+            <th>Domain</th>
+            <th>Index Page</th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr class="active">
+            <td></td>
+            <td>Google Page Index</td>
+            <td><%= @seo_google_page_index %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td>Yahoo Page Index</td>
+            <td><%= @seo_yahoo_page_index %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td>Bing Page Index</td>
+            <td> <%= @seo_bing_page_index  %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td>Moz Rank</td>
+            <td><%= @seo_dmoz_page_index  %></td>
+            <td></td>
+        </tr>
+        <tr class="active">
+            <td></td>
+            <td>Google Plus One</td>
+            <td>  <%= @seo_google_plus_ones_count  %></td>
+            <td></td>
+        </tr>
+        <tr class="success">
+            <td></td>
+            <td>Twitter tweets</td>
+            <td> <%= @seo_tweets  %></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--
+<div class="container" >
+    <h3>Page Index</h3>
+    <div class="row" style="padding-left:80px; background-color: lightskyblue;">
+        <div class="col-lg-6">
+            <strong class="head_size">Domain</strong>
+        </div>
+        <div class="col-lg-6">
+            <strong class="head_size">Index Page</strong>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: #F4F4F4;">
+        <div class="col-lg-6 active">
+
+            <h4>Google Page Index</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_google_page_index %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: lightcyan;">
+        <div class="col-lg-6" >
+            <h4>Yahoo Page Index</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_yahoo_page_index %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: #F4F4F4;">
+        <div class="col-lg-6" >
+            <h4>Bing Page Index</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_bing_page_index  %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: lightcyan;">
+        <div class="col-lg-6" >
+            <h4>Moz Rank </h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_dmoz_page_index  %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: #F4F4F4;">
+        <div class="col-lg-6" >
+            <h4>Google Plus One</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_google_plus_ones_count  %>
+        </div>
+    </div>
+    <div class="row" style="padding-left:80px; background-color: lightcyan;">
+        <div class="col-lg-6" >
+            <h4>Twitters Tweets</h4>
+        </div>
+        <div class="col-lg-6" >
+            <%= @seo_tweets  %>
+        </div>
+    </div>
+
+</div>
+
+
+<!--
+<div>
+    Google Page Index <%= @seo_google_page_index %>
+</div>
+<div>
+    Yahoo Page Index <%= @seo_yahoo_page_index %>
+</div>
+<div>
+    Bing Page Index <%= @seo_bing_page_index  %>
+</div>
+<div>
+    Moz Rank <%= @seo_dmoz_page_index  %>
+</div>
+<div>
+    Google Plus One: <%= @seo_google_plus_ones_count  %>
+</div>
+<!-- W3c validation errors -->
+
+<!--
+<div>
+    Twitters Tweets <%= @seo_tweets  %>
+</div>
+-->
+<div style="padding-bottom:50px; ">
+</div>

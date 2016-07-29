@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+Learn
+https://thinkster.io/angular-rails/
+<a href="https://thinkster.io/angular-rails/">Angular Js And Rails</a>
+<a href="https://thinkster.io/mean-stack-tutorial//">Mean Framework</a>
+<a href="https://github.com/blatyo/page_rankr">Ranke Checker in Rails</a>
+<a href="https://github.com/sunspot/sunspot/wiki/Adding-Sunspot-search-to-Rails-in-5-minutes-or-less">SunSpot</a>
+http://sass-lang.com/install
+http://sass-lang.com/guide
+
+SEO =>https://github.com/n0ne/seo_params
+gem install koala
+
+gem install fb_graph
+
+
+//FB access token
+https://developers.facebook.com/tools/explorer
+
+http://acts-as-solr.rubyforge.org/
+http://stackoverflow.com/questions/4782865/integration-of-solr-lucene-search-with-a-rails-application-which-gems-hints
+
+https://github.com/rsolr/rsolr
+
+gem install w3c_validators w3c validator
+
+https://github.com/alexdunae/w3c_validators
+
+brew tap homebrew/dupes
+
+//HTML checker
+https://validator.w3.org/nu/?doc=http%3A%2F%2Fwww.gyapti.com%2F
+
+https://github.com/unboxed/be_valid_asset
+
+<p>
+    command to run
+
+    gem install bcrypt-ruby
+
+    gem install 'bootstrap-sass'
+
+    gem install 'autoprefixer-rails'
+
+    gem install 'jquery-turbolinks'
+
+
+
+    Step 1: Add gem 'jquery-turbolinks' to your Gemfile.
+
+    Step 2: Add it to your JavaScript manifest file, in this order:
+
+    //= require jquery
+    //= require jquery.turbolinks
+    //= require jquery_ujs
+    //
+    // ... your other scripts here ...
+    //
+    //= require turbolinks
+
+    =>>>>>>>>>>>>>>>>>>>>>>>>>gem 'jquery.turbolinks'
+
+    https://github.com/perfectline/validates_url (URL validator)
+
+    Theme Integration
+
+    gem install 'therubyracer'
+    gem install 'less-rails'
+    gem install 'twitter-bootstrap-rails'
+
+    then open your application.css file in same folder there you will see
+
+    *= require_tree.
+    replace this line with
+
+    *= require "file_name.css"
+
+    Step 3
+    Run bundle install
+
+    //social login
+    https://github.com/mohitjain/social-login-in-rails
+
+    http://agelber.com/blog/adding-facebook-auth-to-rails/
+    http://www.sitepoint.com/rails-authentication-oauth-2-0-omniauth/
+
+    https://developers.facebook.com/apps/
+    https://www.facebook.com/pages/create/?ref_type=sitefooter
+    https://developers.facebook.com/tools/accesstoken/
+
+
+    gem 'omniauth'
+    gem 'omniauth-facebook', '1.4.0'
+    >>>>>>>>code part
+    def users_params
+    params.require(:user).permit(:name, :email, :password,
+    :password_confirmation,:password_digest,
+    :uid,:provider,:token,:expire_at,:image)
+    end
+
+    http://stackoverflow.com/questions/25399414/rails-4-1-5-omniauth-strong-parameters
+
+    https://developers.facebook.com/apps/
+    https://richonrails.com/articles/google-authentication-in-ruby-on-rails
+
+    Use this to install: https://www.facebook.com/dialog/pagetab?app_id=YOUR_APP_ID&display=popup&next=YOUR_URL
+    https://github.com/arsduo/koala/wiki/Graph-API
+
+    https://github.com/arsduo/koala/wiki/OAuth
+    http://railscarma.com/blog/management/how-to-get-user-information-from-facebook-to-rails-application/
+    https://developers.facebook.com/docs/facebook-login/access-tokens#pagetokens
+
+    https://developers.facebook.com/docs/facebook-login/permissions/v2.2#overview
+    https://developers.facebook.com/docs/pages/access-tokens#roles
+
+    http://www.gotealeaf.com/blog/facebook-graph-api-using-omniauth-facebook-and-koala
+
+</p>
+<div>
+    @user = Koala::Facebook::API.new(access_token)
+    page_access_token = @user.get_connections('me', 'accounts').first['access_token'] #this gets the users first page.
+    @page = Koala::Facebook::API.new(page_access_token)
+    @page.put_connections(user_id, "feed", :message => "Page writting to user's wall!")
+
+    def show
+    auth = Facebook.auth.from_cookie(cookies)
+    authenticate Facebook.identify(auth.user)
+    redirect_to dashboard_url
+    end
+    # handle Normal OAuth flow: start
+    def new
+    client = Facebook.auth(callback_facebook_url).client
+    redirect_to client.authorization_uri(
+    :scope => Facebook.config[:scope]
+    )
+</div>
+<div>
+
+    class User < ActiveRecord::Base
+    #attr_accessible :provider, :uid, :token, :email, :name, :first_name, :last_name, :image, :gender, :location, :school, :year
+    has_many :friends
+
+    def self.from_omniauth(auth)
+    where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
+    user.provider = auth["provider"]
+    user.uid = auth["uid"]
+    user.name = auth["info"]["name"]
+    user.first_name = auth["info"]["first_name"]
+    user.last_name = auth["info"]["last_name"]
+    user.image = auth["info"]["image"]
+    user.email = auth["info"]["email"]
+    user.gender = auth["extra"]["raw_info"]["gender"]
+    user.location = auth["extra"]["raw_info"]["location"]["name"]
+    user.token = auth["credentials"]["token"]
+
+    user.add_friends
+    user.save!
+    user
+
+    end
+
+    def add_friends
+    @facebook.get_connections("me", "friends").each do |hash|
+    self.friends.find(:name => hash['name'], :uid => hash['id']).first_or_create
+    end
+    end
+
+    private
+
+    def facebook
+    @facebook ||= Koala::Facebook::API.new(token)
+    end
+    end
+    end
+
+
+
+</div>
+
+<div>
+    page
+
+    def self.download_fanpages(user_id)
+
+    #API Facebook
+    @graph = Koala::Facebook::API.new(Client.find(user_id).access_token.to_s)
+
+    #download list of fanpage
+    for facebook_page in @graph.get_object("me/accounts/page")
+    @graphs = Koala::Facebook::API.new(facebook_page["access_token"])
+    @url = @graphs.get_object("me")
+    if @url['link'].index("facebook")
+    if !Fanpage.find_by_uid_and_user(facebook_page["id"],user_id)
+    @fb = Fanpage.new
+    @fb.user = user_id
+    else
+    @fb = Fanpage.find_by_uid(facebook_page["id"])
+    end
+    @fb.name = facebook_page["name"]
+    @fb.access_token = facebook_page["access_token"]
+    @fb.uid = facebook_page["id"]
+    @fb.url = @url['link']
+
+    #install or not install
+    if @graphs.get_object("me/tabs/"+APP_ID.to_s).count > 0
+    @fb.install = 1
+    else
+    @fb.install = 0
+    end
+    @fb.save
+    end
+    end
+    end
+</div>
+
+https://graph.facebook.com/?ids=http://www.imdb.com/title/tt0117500/
+http://graph.facebook.com/v2.1/10154129241858356/accounts
+https://developers.facebook.com/tools/explorer/868060673300983
+
+//Page Feed
+https://github.com/arsduo/koala/wiki/Acting-as-a-Page
+
+gem 'responders'
+
+//jquery
+http://stackoverflow.com/questions/9533310/ruby-on-rails-action-without-view
+http://paydrotalks.com/posts/45-standard-json-response-for-rails-and-jquery/
+http://stackoverflow.com/questions/1675215/ajax-replace-instead-of-append
+http://asciicasts.com/episodes/174-pagination-with-ajax
+
+//Bread Crumb
+https://github.com/seyhunak/twitter-bootstrap-rails/pull/512
+
+//Local
+http://stackoverflow.com/questions/23533922/ruby-on-rails-switching-locale
+
+//twitter
+http://sferik.github.io/twitter/
+https://github.com/sferik/twitter
+http://stackoverflow.com/questions/23605255/no-route-matches-get-auth-twitter
+
+//Device gem install
+rails generate devise:install
+gem 'omniauth-twitter'
+gem 'omniauth-instagram'
+gem 'twitter'
+gem install 'instagram'
+gem install 'omniauth-google-oauth2'
+gem install 'google-api-client', require: 'google/api_client'
+gem install 'omniauth-linkedin'
+google app creater
+https://console.developers.google.com/project
+
+</body>
+Mysql commnads
+
+mysql.server start
+
+sudo mysql -u root -p
+show databases;
+use rbeyondforth_development;
+
+//Bootstrap
+http://getbootstrap.com/css/
+
+//Google Client ID and Secret
+Here is your client ID
+1002663303461-etsitapfis57fc1i2a6i12qul98brlgq.apps.googleusercontent.com
+Here is your client secret
+ON9v4ijbmcjCuyru9MWrvJ4l
+
+//File Upload
+http://stackoverflow.com/questions/5776252/rails-3-upload-files-to-public-directory
+
+//Spinner Ajax Loader
+http://codediode.io/lessons/8736-loading-spinners-in-rails
+
+//API console of google
+http://docs.mainwp.com/create-google-pagespeed-insights-api-key/
+
+//Key shortcuts for mac
+https://support.google.com/chrome/answer/157179?hl=en
+
+//pdf generated by prawn
+http://www.sitepoint.com/pdf-generation-rails/
+
+//Generate API and Secret key for linkedin
+https://auth0.com/docs/connections/social/linkedin
+
+//Generate API and Secret key for Xing
+https://thechamplord.wordpress.com/2014/12/06/how-to-get-xing-consumer-key-and-secret/
+
+//Enable Linkedin Login using Linkedin API key
+http://support.heateor.com/how-to-get-linkedin-api-key/
+
+//Good article to choose gem in rails project
+https://medium.com/@riklomas/my-favourite-ruby-gems-services-89fb47341c05#.vby7x0nd3
+
+//Linkedin Client Id or Secret Id
+75u7kw8w6ibns5
+yaIzNBfVX60rw0Wx
+
+//Paperclip gem example
+http://patshaughnessy.net/2009/4/30/paperclip-sample-app
+http://code.runnable.com/UnnhcBiQoFhwAAEb/how-to-upload-files-using-paperclip-for-ruby-on-rails
+
+//Pinterest api key
+4804574260888611446
+•••••
+0141fbe7920f446091f8bab5c2e218f74eceb9fc3c477f45826e48669005ba14
+
+//To get the api and secret key of Instagram
+https://github.com/ropiku/omniauth-instagram
+
+//To generate the api and secret key of pinterest
+
+//Api and secret key of github
+Client ID
+d04948143e7122d1a1a9
+Client Secret
+850092ac862c730583c9e4432da5fba7a2290c8c
+
+I have to do after linkedin integration-
+Google web master tool integration
+Google Analytics integration
+https://sheharyar.me/blog/using-google-analytics-in-rails-4-with-turbolinks/
+
+//Google analytics tracking id
+Tracking ID
+UA-71270184-1
+
+//Website tracking
+This is the Universal Analytics tracking code for this property.
+To get all the benefits of Universal Analytics for this property, copy and paste this code into every webpage you want to track.
+
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-71270184-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+PHP Implementation
+Use the code above to create a file named "analyticstracking.php", and include the file on each PHP template page.
+Add the following line to each template page immediately after the opening <body> tag:
+<?php include_once("analyticstracking.php") ?>
+
+//Dynamic Content Implementation
+Use a common include or template to paste the code above instead of manually adding it to every page.
+
+//Example of Adwords api for rails
+https://github.com/googleads/google-api-ads-ruby/tree/master/adwords_api/examples/adwords_on_rails
+https://developers.google.com/apis-explorer/?hl=en_US#p/webmasters/v3/
+
+//Elasticsearch and Searchkik integration to search with autocomplete
+https://github.com/grk/bookstore-example/
+http://blog.ragnarson.com/2013/10/10/adding-search-and-autocomplete-to-a-rails-app-with-elasticsearch.html
+
+//webmaster tools
+https://developers.google.com/apis-explorer/?hl=en_US#p/webmasters/v3/
+
+//To generare adwords api key
+http://jafty.com/blog/getting-a-google-adwords-api-key/
+
+//access token for Google Analytics
+
+POST /oauth2/v3/token HTTP/1.1
+Host: www.googleapis.com
+Content-length: 279
+content-type: application/x-www-form-urlencoded
+user-agent: google-oauth-playground
+
+code=4%2FcGZl4JF451CGwE-Pulba68SGNxQnt6VHbjdwkOL-B_Q&redirect_uri=https%3A%2F%2Fdevelopers.google.com%2Foauthplayground&client_id=1002663303461-etsitapfis57fc1i2a6i12qul98brlgq.apps.googleusercontent.com&client_secret=ON9v4ijbmcjCuyru9MWrvJ4l&scope=&grant_type=authorization_code
+
+HTTP/1.1 200 OK
+Content-length: 210
+X-xss-protection: 1; mode=block
+X-content-type-options: nosniff
+Expires: Fri, 01 Jan 1990 00:00:00 GMT
+Vary: Origin,X-Origin
+Server: GSE
+Pragma: no-cache
+Cache-control: no-cache, no-store, max-age=0, must-revalidate
+Date: Mon, 28 Dec 2015 10:36:22 GMT
+X-frame-options: SAMEORIGIN
+Content-type: application/json; charset=UTF-8
+{
+"access_token": "ya29.WAKYV1p4GW2WhuJPktNz-SaTrXXrBhJKjHVDF3pm_RnluAJX2GcVRBAX7LzuLeUygezf",
+"token_type": "Bearer",
+"expires_in": 3600,
+"refresh_token": "1/2NVpL8EW5Gus1i9Ar6tdnsaUwsJcjAW2x_Er9X4OX5M"
+}
+
+//sending email from rails app
+http://jj09.net/sending-email-from-rails-application/
+http://stackoverflow.com/questions/5453052/rails-actionmailer-sometimes-shows-attachments-before-the-email-content/10787533#10787533
+http://stackoverflow.com/questions/5145870/rails-actionmailer-how-to-send-an-attachment-that-you-create
+https://www.codefellows.org/blog/how-to-set-up-a-rails-4-2-mailer-with-sidekiq
+
+//To recover table of database
+http://stackoverflow.com/questions/4269395/rails-accidentally-dropped-my-table
+
+//build api
+http://www.theodinproject.com/ruby-on-rails/apis?ref=lc-pb
+
+//post on Linkedin
+http://ctrlaltdad.com/2011/06/03/linkedin-javascript-api/
+
+</body>
+</html>

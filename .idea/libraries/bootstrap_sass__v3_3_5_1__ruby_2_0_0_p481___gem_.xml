@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="bootstrap-sass (v3.3.5.1, ruby-2.0.0-p481) [gem]">
+    <CLASSES>
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/lib" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/tasks" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/assets" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/templates" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/lib" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/tasks" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/assets" />
+      <root url="file:///Library/Ruby/Gems/2.0.0/gems/bootstrap-sass-3.3.5.1/templates" />
+    </SOURCES>
+  </library>
+</component>

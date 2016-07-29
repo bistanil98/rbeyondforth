@@ -1,0 +1,26 @@
+<div class="container" >
+    <div class="form-signin well" >
+    <h3 style="padding-bottom:10px; text-decoration:underline;">Create an account</h3>
+    <%= bootstrap_form_for :user, url:users_create_path do |f| %>
+        <div >
+            <%= f.text_field :name  %>
+        </div>
+
+        <div>
+            <%= f.text_field :email %>
+        </div>
+
+        <div>
+            <%= f.password_field :password%>
+        </div>
+        <div class="field">
+            <%= f.password_field :password_confirmation%>
+        </div>
+        <div>
+            <%= f.submit  class:"btn btn-primary "%>
+        </div>
+    <% end %>
+    </div>
+    </div>
+</div>
+
