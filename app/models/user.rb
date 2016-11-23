@@ -1,40 +1,104 @@
 require "bcrypt"
+require 'rest-client'
 class User < ActiveRecord::Base
 
-  has_attached_file :image, styles: { large: "600X600>", medium: "300x300>",thumb: "100x100>" }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-
+  has_many :linkedin_shares
+  has_many :social_media
+  has_attached_file :image, styles:{large:"600X600>",medium:"300x300>",thumb: "100x100>" }
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates :email, uniqueness: {case_sensitive: false}
   has_secure_password
   include BCrypt
-  before_create { generate_token(:auth_token) }
+  before_create {generate_token(:auth_token)}
 
-  # has_attached_file :image, styles: { large: "600X600>", medium: "300x300>",thumb: "100x100>" }
-  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
   def password
     @password ||= Password.new(password_digest)
   end
-
-  def self.omniauth(auth)
-    puts auth
-    puts auth.info.email
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.password = 'bojanglesicedtea'
-      user.password_confirmation = 'bojanglesicedtea'
-      user.provider = auth.provider
-      user.uid = auth.uid
-      user.name = auth.info.name
-      #user.image = auth.info.image
-      user.token = auth.credentials.token
-      user.email = auth.info.email
-
 =begin
-      user.granted_scopes = auth.credentials.granted_scopes.
-      user.scope = auth.credentials.scopes.
-
-      user.expire_at = Time.at(auth.credentials.expires_at)
+  def token_expired?
+    expiry = Time.at(self.expiresat)
+    return true if expiry < Time.now # expired token, so we should quickly return
+    token_expires_at = expiry
+    save if changed?
+    false # token not expired. :D
+  end
 =end
-      user.save!
+  def self.fb_omniauth(auth)
+    if User.find_by_email(auth.info.email).present?
+      # if SocialMedium.exists?where(social_email:auth.info.email)
+      puts "beyondforth account exists for this email"
+      usr = SocialMedium.fb_omni(auth)
+
+      where(id:usr.user_id).first do |u|
+
+      end
+
+    else
+
+      if SocialMedium.find_by_social_email(auth.info.email).present?
+
+        usr = SocialMedium.fb_omni(auth)
+
+        where(id:usr.user_id).first do |u|
+
+        end
+
+      else
+
+        where(email:auth.info.email).create do |u|
+
+          u.password = "password"
+          u.name = auth.info.name
+          u.email = auth.info.email
+          u.image = auth.info.image
+          u.status_active = true
+          if u.save!
+            usr = SocialMedium.fb_omni(auth)
+          end
+
+        end
+      end
+    end
+
+  end
+
+
+  def self.google_omniauth(auth)
+    if User.find_by_email(auth.info.email).present?
+      # if SocialMedium.exists?where(social_email:auth.info.email)
+      puts "beyondforth account exists for this email"
+      usr = SocialMedium.google_omni(auth)
+
+      where(id:usr.user_id).first do |u|
+
+      end
+
+    else
+
+      if SocialMedium.find_by_social_email(auth.info.email).present?
+
+        usr = SocialMedium.google_omni(auth)
+
+        where(id:usr.user_id).first do |u|
+
+        end
+
+      else
+
+        where(email:auth.info.email).create do |u|
+
+          u.password = "password"
+          u.name = auth.info.name
+          u.email = auth.info.email
+          u.image = auth.info.image
+          u.status_active = true
+          if u.save!
+            usr = SocialMedium.google_omni(auth)
+          end
+
+        end
+      end
     end
   end
 
@@ -55,6 +119,5 @@ class User < ActiveRecord::Base
     user = find_by_email(email)
     user if !user.nil? && user.authenticate(password)
   end
-
 
 end

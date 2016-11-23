@@ -1,0 +1,13 @@
+<div>
+    <%= bootstrap_form_for :social_media, url:@action_path+'?id='+@id, remote: true do |f| %>
+        <div>
+            <%= f.text_area :message %>
+        </div>
+
+        <div>
+            <%= f.submit  @action_path.humanize, class:"btn btn-primary "%>
+        </div>
+    <% end %>
+</div>
+
+<%= render partial: 'message_form' %>

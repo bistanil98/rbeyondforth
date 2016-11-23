@@ -1,6 +1,6 @@
 <div class="container">
-    <%= bootstrap_form_for(:seo, inline_errors: true,url:seo_index_path,layout: :horizontal) do |f| %>
-        <%= f.text_field :site_uri  , control_col: "col-sm-8" , placeholder: "Put web site Url" %>
+    <%= bootstrap_form_for(:seo, inline_errors: true,url:seo_index_path,layout: :horizontal, method: :get) do |f| %>
+        <%= f.text_field :site_uri  , control_col: "col-sm-8" , placeholder: "Put web site Url", required: true %>
         <%= f.errors_on :site_uri  , control_col: "col-sm-6" %>
         <%= f.form_group do %>
             <%= f.submit "Submit", class: "btn btn-success"%>

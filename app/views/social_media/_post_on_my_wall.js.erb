@@ -1,0 +1,48 @@
+$('#fb_data').html("<%= j render 'edit_name' %>");
+<%= link_to 'Previous', url_for(:page => @results.previous_page_params, remote: true),class: "click"  %>
+<%= link_to 'Next', "javascript:void(0)",name: @results.next_page_params,class: "click"  %>
+
+<div>
+<% @results.each do |result| %>
+    <div style="border: 1px solid red;">
+        <div>
+        <%= result%>
+        </div>
+    </div>
+    <div style="height: 10px;"></div>
+<% end %>
+
+<%= link_to 'Previous', url_for(:page => @results.previous_page_params , remote: true) %>
+<%= link_to 'Next', url_for(:page => @results.next_page_params , remote: true) %>
+</div>
+
+$(document).on('click','.click', function (e) {
+    var del=$(this).attr('name');
+    showPageDetail(del);
+});
+// function ends here
+function showPageDetail(del) {
+    $.ajax({
+        type: 'get',
+        cache: false,
+        url: "http://localhost:3000/social_media/fb_page_display/?page=" + del,
+        dataType: 'html',
+        success: function (data) {
+            if (data.success == false) {
+                var arr = data.errors;
+                $.each(arr, function (index, value) {
+                    alert(value);
+                });
+            }
+            else {
+                $("#fb_data").html(data);
+                alert(url);
+                alert(data);
+                /* window.location.assign("show")*/
+            }
+        },
+        error: function (xhr, textStatus, thrownError) {
+            alert('Something went to wrong.Please Try again later...');
+        }
+    });
+}

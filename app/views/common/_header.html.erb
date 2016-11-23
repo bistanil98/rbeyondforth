@@ -1,0 +1,173 @@
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div>
+                <%= link_to welcome_index_path do %>
+                    <%= image_tag("logo.png", :alt => "Logo",:width => 50, :height => 50) %>
+                <% end %>
+            </div>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
+            <ul class="nav navbar-nav" style="width: 850px;" id="navListItem">
+                <li class="active">
+                    <%= link_to 'Dashboard', rails_admin_path %>
+                    <!--<a href="#">Dashboard</a>-->
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Market Analysis <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to 'Web Master Tool', market_index_path %>
+                        </li>
+                        <li class="dropdown-submenu">
+                            <a href="#">Google analytics</a>
+                            <ul class="dropdown-submenu-menu">
+                                <li class="dropdown-submenu" data-turbolinks="false"><!-- disabling turbolinks for proper working of gooogle analytics code -->
+                                    <%=link_to 'Basic Dashboard', market_market_basic_dashboard_path %>
+                                <li>
+                                    <%=link_to 'Interactive Charts', market_market_interactive_charts_path %>
+                                </li>
+                                <li>
+                                    <%=link_to 'Multiple Views', market_market_multiple_views_path %>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- facebook pixel -->
+                        <li class="dropdown-submenu">
+                            <%=link_to 'Facebook Pixel', market_facebook_pixel_path%>
+                        </li>
+
+                        <li>
+                            <%= link_to 'Market Grade', market_market_grade_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Market Grade Report', market_market_grade_report_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Events', market_market_grade_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Competitors', market_competitors_path %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academy<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to 'Popular Blog', '#' %>
+                        </li>
+                        <li>
+                            <%= link_to 'Latest Blog', '#' %>
+                        </li>
+                        <li>
+                            <%= link_to 'Articles', '#' %>
+                        </li>
+                    </ul>
+                </li>
+                    <comment social media menu start></comment>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">SEO <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <%= link_to 'W3Validation', seo_index_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Page Rank', seo_get_post_page_rank_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Page Linking', seo_get_page_links_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'On Page, Off Page', seo_get_on_offpage_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Keywords Analysis', seo_get_page_keywords_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Meta Tags Analysis', seo_get_meta_tags_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'SEO Report', seo_get_seo_report_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Google Page Speed.', seo_get_page_speed_path %>
+                            </li>
+                        </ul>
+                    </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Social Media <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to 'Facebook', social_media_index_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Twitter', social_media_twitter_index_path %>
+                        </li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Professional Media <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to 'LinkedIn', social_media_linkedin_index_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'XING', market_competitors_path %>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advertisement<b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <%= link_to 'Google Adwords', seo_index_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Classified', market_competitors_path %>
+                        </li>
+                        <li>
+                            <%= link_to 'Affilate Sites', market_competitors_path %>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <comment end of left header tab></comment>
+            <ul class="nav navbar-nav navbar-right">
+                <% unless user_is_logged_in? %>
+                    <% puts "#{user_is_logged_in?}" %>
+                    <li class="active"><%= link_to 'Registration', users_register_path %></li>
+                    <li class="active"><%= link_to 'Login', users_login_path %></li>
+                <% else %>
+                <li >
+                    <div>
+                        <%= link_to(image_tag(session[:user_image], :alt => "user image",:class=>"img-circle id_img")) %>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=session[:user_name]%><b
+                    class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Dashboard</a></li>
+                        <li><%= link_to 'My Profile', users_profile_path %></li>
+                        <li>
+                            <%= link_to 'Logout', users_logout_path, id: "logout" %>
+                            </li>
+                    </ul>
+                </li>
+                <% end %>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>

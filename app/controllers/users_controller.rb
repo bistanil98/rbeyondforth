@@ -1,17 +1,23 @@
 class UsersController < ApplicationController
 
   require 'koala'
-  require "fb_graph"
   layout 'user_layout', :only => [:profile, :change_password,:update_password,:edit]
+
+  before_action :require_login, :except => [:login, :fb_login, :google_login, :register, :logout, :new, :create]
+
+
   def index
-    #@graph = Koala::Facebook::GraphAPI.new
-    #@client=@graph.get_object("soarlogic")
-    #puts @client
+    add_breadcrumb "users index", users_index_path
   end
 
 
   def login
-    @user = User.new
+    if user_is_logged_in?
+      redirect_to users_profile_path
+    else
+      @user = User.new
+    end
+    add_breadcrumb "login", users_login_path
   end
 
   def fb_login
@@ -19,7 +25,7 @@ class UsersController < ApplicationController
    redirect_to '/auth/facebook'
   end
 
-  def tw_login
+  def twttr_login
     puts 'in tw login path'
     redirect_to '/auth/twitter'
   end
@@ -31,7 +37,7 @@ class UsersController < ApplicationController
 
   def google_login
     puts 'in google login path'
-    redirect_to '/auth/google'
+    redirect_to '/auth/google_oauth2'
   end
 
   def git_login
@@ -49,7 +55,11 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if user_is_logged_in?
+      redirect_to users_index_path
+    else
+      @user = User.new
+    end
   end
 
   def create
@@ -58,8 +68,14 @@ class UsersController < ApplicationController
       flash[:success] = "Welcome to the Sample App!"
       redirect_to users_login_path
     else
-      flash[:error] = "put data"
-      render 'register'
+      if User.find_by_email(@user.email) or SocialMedium.find_by_social_email(@user.email)
+        flash[:notice] = "#{@user.email} is already registered with us. You must login to continue with this email or try creating account with another email that is not already registered with us."
+        render 'register'
+        puts "registering with existing email account"
+      else
+        flash[:error] = "Sorry, something went wrong. Please try again!"
+        render 'register'
+      end
     end
   end
 
@@ -76,14 +92,17 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by_id(session[:user_id])
+    add_breadcrumb "profile", users_profile_path
   end
 
   def change_password
     @user = User.find_by_id(session[:user_id])
+    add_breadcrumb "change password", users_change_password_path
   end
 
   def forgot_password
     @user = User.new
+    add_breadcrumb "forgot password", users_forgot_password_path
   end
 
   def forgot_password_send_email
@@ -127,6 +146,14 @@ class UsersController < ApplicationController
   end
 
   def show
+  end
+
+  def register
+
+    if user_is_logged_in?
+      redirect_to users_index_path
+    end
+    add_breadcrumb "register", users_register_path
   end
 
   private

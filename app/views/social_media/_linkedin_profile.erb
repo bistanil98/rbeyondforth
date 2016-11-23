@@ -1,0 +1,27 @@
+<div style="padding-left: 12px;padding-bottom: 10px;padding-right: 15px;padding-top: 4px;">
+    <div style="float:left;">
+        <%= image_tag(@profile.picture_url, :alt => "user image",:class=>"img-circle id_img") %>
+    </div>
+    <div style="padding-left: 12px;margin-left: 60px; padding-top: 7px">
+        <div style="word-wrap: break-word;">
+            <span>
+                <h5><%= @profile.first_name %>
+            </span>
+            <span>
+                <%= @profile.last_name %></h5>
+            </span>
+        </div>
+        <div>
+            <h6><%= @profile.headline %></h6>
+        </div>
+    </div>
+</div>
+<div style="padding-left: 12px;padding-bottom: 10px;padding-right: 15px;padding-top: 30px; line-break: strict;">
+
+        <div>
+            <h5><%= "Email: #{@profile.email_address}" %></h5>
+        </div>
+        <div>
+            <h5><%= "Location: #{@profile.location.name}" %></h5>
+        </div>
+</div>

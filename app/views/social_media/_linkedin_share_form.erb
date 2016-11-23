@@ -1,0 +1,11 @@
+<div>
+    <%= bootstrap_form_for :social_media, url:social_media_post_on_linkedin_wall_path do |f| %>
+    <div>
+        <%= f.text_area :content %>
+    </div>
+
+    <div>
+        <%= f.submit  "Post On wall", class:"btn btn-primary "%>
+    </div>
+    <% end %>
+</div>

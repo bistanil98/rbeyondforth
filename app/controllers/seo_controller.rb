@@ -8,7 +8,6 @@ class SeoController < ApplicationController
   require 'rsolr'
   require 'w3c_validators'
   require 'koala'
-  require "fb_graph"
   require "prawn"
   require "prawn/table"
   require "axlsx"
@@ -22,19 +21,25 @@ class SeoController < ApplicationController
   require 'wordlist/builders/website'
 
 
-
-  respond_to :html, :json, :pdf, :xlsx
-
-  layout 'seo_layout', :only => [:index, :modal, :get_on_offpage, :get_seo_report, :get_page_speed, :post_page_speed, :post_page_keywords, :post_unique_words, :post_page_links, :post_meta_tags, :get_page_links, :get_unique_words, :get_meta_tags, :get_page_keywords, :suggestion,:seo_w3cvalidators, :get_seo_w3cvalidators, :get_post_page_rank, :post_page_rank, :change_password,:update_password,:edit]
+  layout 'seo_layout', :only => [:index, :modal, :get_on_offpage, :get_seo_report, :get_page_speed, :post_page_speed, :post_page_keywords, :post_unique_words, :post_page_links, :post_meta_tags, :get_page_links, :get_unique_words, :get_meta_tags, :get_page_keywords, :suggestion, :seo_w3cvalidators, :get_seo_w3cvalidators, :get_post_page_rank, :post_page_rank, :change_password,:update_password,:edit]
   include W3CValidators
+  add_breadcrumb "seo index", :seo_index_path
 
 
 
   def index
+    @result=Seo.most_recent
+    respond_to do |format|
+      format.html
+      format.json do
+        render :layout => false
+      end #{render json: @result}
+    end
   end
 
   def suggestion
   render :layout => false
+
   end
 
   def post_page_rank
@@ -53,18 +58,23 @@ class SeoController < ApplicationController
   end
 
   def get_page_rank
+    add_breadcrumb "seo page rank", seo_get_page_rank_path
   end
 
   def get_seo_w3cvalidators
+    @result=Seo.most_recent
+    add_breadcrumb "seo w3cvalidators", seo_get_seo_w3cvalidators_path
   end
 
   def seo_get_post_page_rank
   end
 
   def get_page_keywords
+    add_breadcrumb "seo page keywords", seo_get_page_keywords_path
   end
 
   def seo_get_meta_tags
+    add_breadcrumb "seo meta tags", seo_get_meta_tags_path
   end
 
 =begin
@@ -82,7 +92,8 @@ class SeoController < ApplicationController
   end
 =end
   def download_pdf
-    @seo_list = Seo.find_by_id(1)
+    var_id=params[:var]
+    @seo_list = Seo.find(var_id)
     puts @seo_list.site_uri
     pdf = Prawn::Document.new
     table_data = Array.new
@@ -95,20 +106,58 @@ class SeoController < ApplicationController
       @i=@i+1
     end
     pdf.table(table_data, :width => 500, :cell_style => { :inline_format => true })
-    send_data pdf.render, filename: 'test.pdf', type: 'application/pdf', :disposition => 'inline'
+    send_data pdf.render, filename:'test.pdf', type:'application/pdf', :disposition => 'inline'
   end
 
   def download
-    @seo_list = Seo.find_by_id(1)
+    var_id=params[:var]
+    @seo_list = Seo.find(var_id)
     respond_to do |format|
-      format.xlsx{ render xlsx: 'download',filename: "download.xlsx", type: 'application/xlsx'}
+      format.xlsx{ render xlsx:'download',filename:"download.xlsx", type:'application/xlsx'}
       end
+  end
+  def seo_testpage
+=begin
+      @validator = MarkupValidator.new
+
+       override the DOCTYPE
+      @validator.set_doctype!(:html32)
+
+      if params[:seo][:site_uri] != ""
+        uri_val = params[:seo][:site_uri]
+
+        @results = @validator.validate_uri(uri_val)
+
+        @seo = Seo.new(seo_params)
+
+        @error_data=@results.errors
+
+        table_data = Array.new
+        @error_data.each do |p|
+          table_data << p.to_s
+        end
+        @seo.error_data=table_data
+        if @seo.save
+          flash[:success] = "Error data Save Successfully"
+        else
+          flash[:error] = "Error to save data in seo model"
+        end
+
+        if @results.errors.length == 1
+          flash[:notice] = 'Uri is not valid'
+          render welcome_index_path
+        end
+      else
+        flash[:notice] = 'Uri is Empty please put correct web site URL'
+        render welcome_index_path
+      end
+=end
   end
 
   def seo_w3cvalidators
-    @page = MetaInspector.new(params[:seo][:site_uri])
-    graph = Koala::Facebook::API.new('CAACEdEose0cBAFO7XmLiZCvh8mBUW1i3qwPqkUWIAQHLjQUbpyw2UXfjcg8F34ZB5iFcDmP66ZA8dDSvdzXzjRpZCWAes4Gc1Y55diuW02AyZBwQh75JB22QZBzZCOkz1xZAV97QptKZCj1zjrcyEvVHlJMRy9ZBoWW3OejOgZCAigkiDNv9VzZAxJft5ScSQdRVkdWoxwNiKL16h9naIZCxbbLca');
-#    @likes = graph.get_object("Rockinghats")["likes"]
+    #@page = MetaInspector.new(params[:seo][:site_uri])
+    #graph = Koala::Facebook::API.new('CAACEdEose0cBAFO7XmLiZCvh8mBUW1i3qwPqkUWIAQHLjQUbpyw2UXfjcg8F34ZB5iFcDmP66ZA8dDSvdzXzjRpZCWAes4Gc1Y55diuW02AyZBwQh75JB22QZBzZCOkz1xZAV97QptKZCj1zjrcyEvVHlJMRy9ZBoWW3OejOgZCAigkiDNv9VzZAxJft5ScSQdRVkdWoxwNiKL16h9naIZCxbbLca');
+    #@likes = graph.get_object("Rockinghats")["likes"]
 =begin
       PageRankr.proxy_service = PageRankr::ProxyServices::Random.new([
                                                                          'http://user:password@192.168.1.1:50501',
@@ -177,14 +226,18 @@ class SeoController < ApplicationController
       @seo = Seo.new(seo_params)
 
       @error_data=@results.errors
-
+      count=0 #variable to count no. of errors
       table_data = Array.new
          @error_data.each do |p|
           table_data << p.to_s
+           count=count+1
         end
       @seo.error_data=table_data
+      @seo.errnum=count
         if @seo.save
           flash[:success] = "Error data Save Successfully"
+
+          @variable=@seo.id
         else
           flash[:error] = "Error to save data in seo model"
         end
@@ -203,7 +256,7 @@ class SeoController < ApplicationController
     @seo[:error_data]=@results.errors;
     @seo.save
 =end
-
+    add_breadcrumb "seo w3cvalidators", seo_seo_w3cvalidators_path
   end
 #end of index
 
@@ -248,6 +301,7 @@ class SeoController < ApplicationController
   end
 
   def seo_get_page_links
+    add_breadcrumb "seo page links", seo_get_page_links_path
   end
 
   def post_page_links
@@ -268,6 +322,7 @@ class SeoController < ApplicationController
   end
 
   def get_page_speed
+    add_breadcrumb "seo page speed", seo_get_page_speed_path
   end
 
   def post_page_speed
@@ -308,7 +363,6 @@ class SeoController < ApplicationController
   def seo_params
     params.require(:seo).permit(:site_uri,:error_data)
   end
-#{"kind"=>"pagespeedonline#result", "id"=>"https://www.google.co.in/?gfe_rd=cr&ei=TEhVVuz5J4fD9AW69LPQBQ&gws_rd=ssl", "responseCode"=>200, "title"=>"Google", "ruleGroups"=>{"SPEED"=>{"score"=>92}}, "pageStats"=>{"numberResources"=>12, "numberHosts"=>5, "totalRequestBytes"=>"3275", "numberStaticResources"=>8, "htmlResponseBytes"=>"189206", "imageResponseBytes"=>"45498", "javascriptResponseBytes"=>"773852", "otherResponseBytes"=>"1869", "numberJsResources"=>4}, "formattedResults"=>{"locale"=>"en_US", "ruleResults"=>{"AvoidLandingPageRedirects"=>{"localizedRuleName"=>"Avoid landing page redirects", "ruleImpact"=>7.0, "groups"=>["SPEED"], "summary"=>{"format"=>"Your page has {{NUM_REDIRECTS}} redirects. Redirects introduce additional delays before the page can be loaded.", "args"=>[{"type"=>"INT_LITERAL", "key"=>"NUM_REDIRECTS", "value"=>"2"}]}, "urlBlocks"=>[{"header"=>{"format"=>"{{BEGIN_LINK}}Avoid landing page redirects{{END_LINK}} for the following chain of redirected URLs.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/AvoidRedirects"}]}, "urls"=>[{"result"=>{"format"=>"{{FIRST_URL}}", "args"=>[{"type"=>"URL", "key"=>"FIRST_URL", "value"=>"http://www.google.com/"}]}}, {"result"=>{"format"=>"{{REDIRECTED_URL}}", "args"=>[{"type"=>"URL", "key"=>"REDIRECTED_URL", "value"=>"http://www.google.co.in/?gfe_rd=cr&ei=TEhVVuz5J4fD9AW69LPQBQ"}]}}, {"result"=>{"format"=>"{{REDIRECTED_URL}}", "args"=>[{"type"=>"URL", "key"=>"REDIRECTED_URL", "value"=>"https://www.google.co.in/?gfe_rd=cr&ei=TEhVVuz5J4fD9AW69LPQBQ&gws_rd=ssl"}]}}]}]}, "EnableGzipCompression"=>{"localizedRuleName"=>"Enable compression", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"You have compression enabled. Learn more about {{BEGIN_LINK}}enabling compression{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/EnableCompression"}]}}, "LeverageBrowserCaching"=>{"localizedRuleName"=>"Leverage browser caching", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"You have enabled browser caching. Learn more about {{BEGIN_LINK}}browser caching recommendations{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/LeverageBrowserCaching"}]}}, "MainResourceServerResponseTime"=>{"localizedRuleName"=>"Reduce server response time", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"Your server responded quickly. Learn more about {{BEGIN_LINK}}server response time optimization{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/Server"}]}}, "MinifyCss"=>{"localizedRuleName"=>"Minify CSS", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"Your CSS is minified. Learn more about {{BEGIN_LINK}}minifying CSS{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}]}}, "MinifyHTML"=>{"localizedRuleName"=>"Minify HTML", "ruleImpact"=>0.0534, "groups"=>["SPEED"], "summary"=>{"format"=>"Compacting HTML code, including any inline JavaScript and CSS contained in it, can save many bytes of data and speed up download and parse times."}, "urlBlocks"=>[{"header"=>{"format"=>"{{BEGIN_LINK}}Minify HTML{{END_LINK}} for the following resources to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"534B"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"1%"}]}, "urls"=>[{"result"=>{"format"=>"Minifying {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction) after compression.", "args"=>[{"type"=>"URL", "key"=>"URL", "value"=>"https://www.google.co.in/?gfe_rd=cr&ei=TEhVVuz5J4fD9AW69LPQBQ&gws_rd=ssl"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"534B"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"1%"}]}}]}]}, "MinifyJavaScript"=>{"localizedRuleName"=>"Minify JavaScript", "ruleImpact"=>0.2537, "groups"=>["SPEED"], "summary"=>{"format"=>"Compacting JavaScript code can save many bytes of data and speed up downloading, parsing, and execution time."}, "urlBlocks"=>[{"header"=>{"format"=>"{{BEGIN_LINK}}Minify JavaScript{{END_LINK}} for the following resources to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"1.3KiB"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"1%"}]}, "urls"=>[{"result"=>{"format"=>"Minifying {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction) after compression.", "args"=>[{"type"=>"URL", "key"=>"URL", "value"=>"https://www.google.co.in/xjs/_/js/k=xjs.qd.en.CNaf2ao7V_s.O/m=sx,c,sb,cdos,cr,elog,jsa,r,hsm,qsm,j,p,d,csi/am=ICkIACCI-M4HgbDCGBOkJhBhOQ/rt=j/d=1/t=zcms/rs=ACT90oGZFmgtTCS7bCQZKz52JBKPrYCpkw"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"1.3KiB"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"1%"}]}}]}]}, "MinimizeRenderBlockingResources"=>{"localizedRuleName"=>"Eliminate render-blocking JavaScript and CSS in above-the-fold content", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"You have no render-blocking resources. Learn more about {{BEGIN_LINK}}removing render-blocking resources{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/BlockingJS"}]}}, "OptimizeImages"=>{"localizedRuleName"=>"Optimize images", "ruleImpact"=>0.1874, "groups"=>["SPEED"], "summary"=>{"format"=>"Properly formatting and compressing images can save many bytes of data."}, "urlBlocks"=>[{"header"=>{"format"=>"{{BEGIN_LINK}}Optimize the following images{{END_LINK}} to reduce their size by {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/OptimizeImages"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"1.7KiB"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"9%"}]}, "urls"=>[{"result"=>{"format"=>"Losslessly compressing {{URL}} could save {{SIZE_IN_BYTES}} ({{PERCENTAGE}} reduction).", "args"=>[{"type"=>"URL", "key"=>"URL", "value"=>"https://www.google.co.in/images/nav_logo242.png"}, {"type"=>"BYTES", "key"=>"SIZE_IN_BYTES", "value"=>"1.7KiB"}, {"type"=>"PERCENTAGE", "key"=>"PERCENTAGE", "value"=>"9%"}]}}]}]}, "PrioritizeVisibleContent"=>{"localizedRuleName"=>"Prioritize visible content", "ruleImpact"=>0.0, "groups"=>["SPEED"], "summary"=>{"format"=>"You have the above-the-fold content properly prioritized. Learn more about {{BEGIN_LINK}}prioritizing visible content{{END_LINK}}.", "args"=>[{"type"=>"HYPERLINK", "key"=>"LINK", "value"=>"https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent"}]}}}}, "version"=>{"major"=>1, "minor"=>15}}
-  #{"kind"=>"pagespeedonline#result", "id"=>"https://www.google.co.in/?gfe_rd=cr&ei=GklVVqXgNZSB4AKQmIGoCw&gws_rd=ssl", "responseCode"=>200, "title"=>"Google", "score"=>92, "pageStats"=>{"numberResources"=>12, "numberHosts"=>5, "totalRequestBytes"=>"2917", "numberStaticResources"=>8, "htmlResponseBytes"=>"188699", "imageResponseBytes"=>"45498", "javascriptResponseBytes"=>"772535", "otherResponseBytes"=>"1863", "numberJsResources"=>4}, "formattedResults"=>{"locale"=>"en_US", "ruleResults"=>{"AvoidLandingPageRedirects"=>{"localizedRuleName"=>"Avoid landing page redirects", "ruleImpact"=>7.0, "urlBlocks"=>[{"header"=>{"format"=>"Your page has $1 redirects. Redirects introduce additional delays before the page can be loaded.", "args"=>[{"type"=>"INT_LITERAL", "value"=>"2"}]}}, {"header"=>{"format"=>"Avoid landing page redirects for the following chain of redirected URLs.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/AvoidRedirects"}]}, "urls"=>[{"result"=>{"format"=>"$1", "args"=>[{"type"=>"URL", "value"=>"http://www.google.com/"}]}}, {"result"=>{"format"=>"$1", "args"=>[{"type"=>"URL", "value"=>"http://www.google.co.in/?gfe_rd=cr&ei=GklVVqXgNZSB4AKQmIGoCw"}]}}, {"result"=>{"format"=>"$1", "args"=>[{"type"=>"URL", "value"=>"https://www.google.co.in/?gfe_rd=cr&ei=GklVVqXgNZSB4AKQmIGoCw&gws_rd=ssl"}]}}]}]}, "EnableGzipCompression"=>{"localizedRuleName"=>"Enable compression", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"You have compression enabled. Learn more about enabling compression.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/EnableCompression"}]}}]}, "LeverageBrowserCaching"=>{"localizedRuleName"=>"Leverage browser caching", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"You have enabled browser caching. Learn more about browser caching recommendations.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/LeverageBrowserCaching"}]}}]}, "MainResourceServerResponseTime"=>{"localizedRuleName"=>"Reduce server response time", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"Your server responded quickly. Learn more about server response time optimization.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/Server"}]}}]}, "MinifyCss"=>{"localizedRuleName"=>"Minify CSS", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"Your CSS is minified. Learn more about minifying CSS.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}]}}]}, "MinifyHTML"=>{"localizedRuleName"=>"Minify HTML", "ruleImpact"=>0.0536, "urlBlocks"=>[{"header"=>{"format"=>"Compacting HTML code, including any inline JavaScript and CSS contained in it, can save many bytes of data and speed up download and parse times."}}, {"header"=>{"format"=>"Minify HTML for the following resources to reduce their size by $2 ($3 reduction).", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}, {"type"=>"BYTES", "value"=>"536B"}, {"type"=>"PERCENTAGE", "value"=>"1%"}]}, "urls"=>[{"result"=>{"format"=>"Minifying $1 could save $2 ($3 reduction) after compression.", "args"=>[{"type"=>"URL", "value"=>"https://www.google.co.in/?gfe_rd=cr&ei=GklVVqXgNZSB4AKQmIGoCw&gws_rd=ssl"}, {"type"=>"BYTES", "value"=>"536B"}, {"type"=>"PERCENTAGE", "value"=>"1%"}]}}]}]}, "MinifyJavaScript"=>{"localizedRuleName"=>"Minify JavaScript", "ruleImpact"=>0.2526, "urlBlocks"=>[{"header"=>{"format"=>"Compacting JavaScript code can save many bytes of data and speed up downloading, parsing, and execution time."}}, {"header"=>{"format"=>"Minify JavaScript for the following resources to reduce their size by $2 ($3 reduction).", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/MinifyResources"}, {"type"=>"BYTES", "value"=>"1.3KiB"}, {"type"=>"PERCENTAGE", "value"=>"1%"}]}, "urls"=>[{"result"=>{"format"=>"Minifying $1 could save $2 ($3 reduction) after compression.", "args"=>[{"type"=>"URL", "value"=>"https://www.google.co.in/xjs/_/js/k=xjs.qd.en.rm-KADU13PY.O/m=sx,c,sb,cdos,cr,elog,jsa,r,hsm,qsm,j,p,d,csi/am=IEkQAACCiO98EAgrjDEhNYEIywE/rt=j/d=1/t=zcms/rs=ACT90oEA0z8xkbeWhlSL9BmAPnu215_1wQ"}, {"type"=>"BYTES", "value"=>"1.3KiB"}, {"type"=>"PERCENTAGE", "value"=>"1%"}]}}]}]}, "MinimizeRenderBlockingResources"=>{"localizedRuleName"=>"Eliminate render-blocking JavaScript and CSS in above-the-fold content", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"You have no render-blocking resources. Learn more about removing render-blocking resources.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/BlockingJS"}]}}]}, "OptimizeImages"=>{"localizedRuleName"=>"Optimize images", "ruleImpact"=>0.1874, "urlBlocks"=>[{"header"=>{"format"=>"Properly formatting and compressing images can save many bytes of data."}}, {"header"=>{"format"=>"Optimize the following images to reduce their size by $2 ($3 reduction).", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/OptimizeImages"}, {"type"=>"BYTES", "value"=>"1.7KiB"}, {"type"=>"PERCENTAGE", "value"=>"9%"}]}, "urls"=>[{"result"=>{"format"=>"Losslessly compressing $1 could save $2 ($3 reduction).", "args"=>[{"type"=>"URL", "value"=>"https://www.google.co.in/images/nav_logo242.png"}, {"type"=>"BYTES", "value"=>"1.7KiB"}, {"type"=>"PERCENTAGE", "value"=>"9%"}]}}]}]}, "PrioritizeVisibleContent"=>{"localizedRuleName"=>"Prioritize visible content", "ruleImpact"=>0.0, "urlBlocks"=>[{"header"=>{"format"=>"You have the above-the-fold content properly prioritized. Learn more about prioritizing visible content.", "args"=>[{"type"=>"HYPERLINK", "value"=>"https://developers.google.com/speed/docs/insights/PrioritizeVisibleContent"}]}}]}}}, "version"=>{"major"=>1, "minor"=>15}}
+
 end
 

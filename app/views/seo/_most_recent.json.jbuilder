@@ -1,0 +1,1 @@
+json.extract! seo, :id, :site_uri, :created_at, :errnum

@@ -1,0 +1,1 @@
+json.array! @result, partial: 'seo/most_recent', as: :seo

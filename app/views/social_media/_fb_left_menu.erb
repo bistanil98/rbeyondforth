@@ -1,0 +1,11 @@
+<p>
+    <%= link_to 'My Wall', social_media_index_path %>
+</p>
+
+    <div class="col-lg-4 ">
+        <% for facebook_page in @fb_pages %>
+            <div>
+                <%= link_to facebook_page["name"], social_media_fb_page_display_path(:id=>facebook_page["access_token"]), :remote => true %>
+            </div>
+        <% end %>
+    </div>

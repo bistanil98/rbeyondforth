@@ -1,0 +1,79 @@
+<div class="gap_padding"></div>
+<div class="col-md-2">
+     <%= link_to(image_tag("logo.png", :alt => "Logo",:width => 90, :height => 90)) %>
+</div>
+<div class="verticalLine col-md-2">
+    <h2><%=params[:action].humanize%></h2>
+</div>
+<div class="col-md-8 hide_border tab_padding">
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse"-->
+                        <!--data-target="#tab">Toggle navigation-->
+                    <!--<span class="sr-only">Toggle navigation</span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                    <!--<span class="icon-bar"></span>-->
+                <!--</button>-->
+            </div>
+            <div class="collapse navbar-collapse" id="tab" >
+                <nav class="navbar-default">
+                        <ul class="list-inline pull-right right_margin_adjust">
+
+                            <li>
+                                <%= link_to 'Certification', market_certification_path %>
+                            </li>
+                            <li>
+                                <%= link_to 'Webinars', market_webinars_path %>
+                            </li>
+                            <li><a href="#">Customer Examples</a></li>
+                            <li><a href="#">Users Group</a></li>
+                            <li><a href="#">Academy Blog</a></li>
+                        </ul>
+                </nav>
+                    <div style="padding: 10px;">
+                        <% if user_is_logged_in? %>
+                            <ul class="list-inline pull-right right_margin_adjust social-network social-circle" id="connection">
+                                <li><label>Connect with: </label></li>
+                                <li id="Fb">
+                                    <%=link_to users_fb_login_path, target: "_blank", class: "icoFacebook #{('activefb' if connected_fb?)}" do%>
+                                        <i class="fa fa-facebook"></i>
+                                    <%end%>
+                                </li>
+                                <li id="Twtr">
+                                    <%=link_to users_twttr_login_path, target: "_blank", :class => "icoTwitter #{('activetwtr' if connected_twtr?)}" do%>
+                                        <i class="fa fa-twitter"></i>
+                                    <%end%>
+                                </li>
+                                <li id="G">
+                                    <%=link_to users_google_login_path, target: "_blank", :class => "icoGoogle #{('activegoogle' if connected_google?)}" do%>
+                                        <i class="fa fa-google-plus"></i>
+                                    <%end%>
+                                </li>
+                                <li id="Li">
+                                    <%=link_to users_linkedin_login_path, target: "_blank", :class => "icoLinkedin #{('activelinkdin' if connected_linkedin?)}" do%>
+                                        <i class="fa fa-linkedin"></i>
+                                    <%end%>
+                                </li>
+                                <li id="Pin">
+                                    <%=link_to users_fb_login_path, target: "_blank", :class => "icoPinterest #{('activepin' if connected_pin?)}" do%>
+                                        <i class="fa fa-pinterest"></i>
+                                <%end%>
+                                </li>
+                                <li id="Git">
+                                    <%=link_to users_git_login_path, target: "_blank", :class => "icoGithub #{('activegit' if connected_git?)}" do%>
+                                        <i class="fa fa-github"></i>
+                                    <%end%>
+                                </li>
+                            </ul>
+                        <%end%>
+                    </div>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="clearfix"></div>
+
+
+

@@ -1,20 +1,21 @@
 <div class="container" >
     <div class="form-signin well" >
     <h3 style="padding-bottom:10px; text-decoration:underline;">Create an account</h3>
-    <%= bootstrap_form_for :user, url:users_create_path do |f| %>
+    <%= bootstrap_form_for(:user, inline_errors: true, url:users_create_path) do |f| %>
         <div >
-            <%= f.text_field :name  %>
+            <%= f.text_field :name, reqired: true %>
         </div>
 
         <div>
-            <%= f.text_field :email %>
+            <%= f.text_field :email, required: true %>
+            <%= f.errors_on :email  , control_col: "col-sm-6" %>
         </div>
 
         <div>
-            <%= f.password_field :password%>
+            <%= f.password_field :password, required: true%>
         </div>
         <div class="field">
-            <%= f.password_field :password_confirmation%>
+            <%= f.password_field :password_confirmation, required: true%>
         </div>
         <div>
             <%= f.submit  class:"btn btn-primary "%>

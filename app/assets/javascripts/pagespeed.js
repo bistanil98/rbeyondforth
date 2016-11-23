@@ -1,8 +1,8 @@
 /**
  * Created by AnilSingh on 21/01/16.
  */
-
-var API_KEY = 'AIzaSyCigRkTRFrj827jyzrsG1XAHIYgizQ3f9E';
+document.on("ready", )
+var API_KEY = 'AIzaSyCrMW_xW6i82Vbzbh5f-DqXpMK644ihN0A';
 
 // Specify the URL you want PageSpeed results for here:
 var URL_TO_GET_RESULTS_FOR = 'https://developers.google.com/speed/pagespeed/insights/'
@@ -33,7 +33,7 @@ function runPagespeedCallbacks(result) {
     if (result.error) {
         var errors = result.error.errors;
         for (var i = 0, len = errors.length; i < len; ++i) {
-            if (errors[i].reason == 'badRequest' && API_KEY == 'AIzaSyCigRkTRFrj827jyzrsG1XAHIYgizQ3f9E') {
+            if (errors[i].reason == 'badRequest' && API_KEY == 'AIzaSyCrMW_xW6i82Vbzbh5f-DqXpMK644ihN0A') {
                 alert('Please specify your Google API key in the API_KEY variable.');
             } else {
                 // NOTE: your real production app should use a better

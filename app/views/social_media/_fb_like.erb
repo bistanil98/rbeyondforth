@@ -1,0 +1,7 @@
+<div style="display: inline-block;position: relative;">
+    <% if post['likes']['summary']['has_liked']%>
+        <img src="\assets\liked.png" width="18px" height="18px"/>&nbsp;<%=link_to "Like", social_media_fb_unlike_path(:pid => "#{post['id']}"),id: "to_unlike", :remote => true%>
+    <%else%>
+        <img src="\assets\unliked.png" width="18px" height="18px"/>&nbsp;<%=link_to "Like",social_media_fb_like_path(:pid => "#{post['id']}"),id: "to_like", :remote => true%>
+    <%end%>
+</div>

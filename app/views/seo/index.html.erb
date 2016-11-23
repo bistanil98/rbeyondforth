@@ -1,89 +1,31 @@
 <!--<div class="container">-->
-<div class=" well">
-    <h3 style="text-decoration:underline; padding-left:20px;">Get seo w3c validators</h3>
-    <%= bootstrap_form_for(:seo, inline_errors: true,url:seo_seo_w3cvalidators_path,layout: :horizontal) do |f| %>
-        <%= f.text_field :site_uri  , control_col: "col-sm-8" , placeholder: "Put web site Url" %>
-        <%= f.errors_on :site_uri  , control_col: "col-sm-6" %>
-        <%= f.form_group do %>
-            <%= f.submit "Submit", class: "btn btn-success"%>
-        <% end %>
-    <% end %>
-</div>
-
-<!--
-<div class="bs-example " style="margin-left:150px; margin-right:150px; ">
+<%= render "seo/get_seo_w3cvalidators" %>
+<!-- latest 5 checked websites -->
+<div class="bs-example">
     <table class="table">
+        <caption><h3>Latest 5 websites checked for validations</h3></caption>
         <thead>
         <tr class="info">
             <th>S.No.</th>
             <th>Site Name</th>
-            <th>Date</th>
-            <th>Update Date</th>
-            <th>Action</th>
+            <th>Visit Date & Time</th>
+            <th>Validation Errors</th>
         </tr>
         </thead>
         <tbody>
-        <tr class="active">
-            <td>1</td>
-            <td>www.soarlogic.com</td>
-            <td>05/10/2015</td>
-            <td>01/10/2015</td>
-            <td><%= link_to 'Update', users_login_path %></td>
-        </tr>
-        <tr class="success">
-            <td>2</td>
-            <td>www.gyapti.com</td>
-            <td>05/10/2015</td>
-            <td>02/10/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="active">
-            <td>3</td>
-            <td>www.bsnl.co.in</td>
-            <td>05/10/2015</td>
-            <td>30/09/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="success">
-            <td>4</td>
-            <td>www.dnhost.gr</td>
-            <td>05/10/2015</td>
-            <td>02/10/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="active">
-            <td>5</td>
-            <td>www.bsnl.co.in</td>
-            <td>05/10/2015</td>
-            <td>29/09/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="success">
-            <td>6</td>
-            <td>www.mometro.com</td>
-            <td>05/10/2015</td>
-            <td>01/10/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="active">
-            <td>7</td>
-            <td>www.mybuy4u.com</td>
-            <td>05/10/2015</td>
-            <td>28/09/2015</td>
-            <td>Update</td>
-        </tr>
-        <tr class="success">
-            <td>8</td>
-            <td>www.studywallet.com</td>
-            <td>05/10/2015</td>
-            <td>26/10/2015</td>
-            <td>Update</td>
-        </tr>
+        <% i=1 %>
+        <% @result.each do |d| %>
+            <tr class="active">
+                <td><%= i %></td>
+                <td><%= d.site_uri %></td>
+                <td><%= d.created_at %></td>
+                <td><%= d.errnum %></td>
+            </tr>
+            <% i=i+1 %>
+        <% end %>
         </tbody>
     </table>
 </div>
-<div style="height: 10px;"></div>
--->
 <!--<nav class="row nav navbar-default navbar-inverse">-->
 
     <!--<div class=" view_page">-->

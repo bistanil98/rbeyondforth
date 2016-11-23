@@ -1,0 +1,95 @@
+<%= link_to 'Previous', url_for(:page => @results.previous_page_params) %>
+&nbsp;<%= link_to 'Next', url_for(:page => @results.next_page_params) %>
+<div style=""></div>
+<div id="fb_home">
+    <ul class="list-group">
+        <% @results.each do |result| %>
+            <div style="padding-bottom:10px;">
+                <li class="list-group-item" style="padding-top: 10px; padding-bottom: 0px;padding-left: 0px;padding-right: 0px">
+                    <div style="padding-left: 12px;padding-bottom: 10px;padding-right: 15px;padding-top: 4px;">
+                        <div style="float: left">
+                            <img src=<%= fb_comments(:cuid => "#{result['from']['id']}") %> />
+                        </div>
+                        <div style="padding-left: 12px;margin-left: 60px;">
+                            <div>
+                                <%if result['story'].present? %>
+                                    <%= result['story']%>
+                                <%else%>
+                                    <%= result['from']['name'] %>
+                                <%end%>
+                            </div>
+                            <div style="word-wrap: break-word;">
+                                <%=result['created_time'].to_datetime.strftime("%a, %b %d %G at %I:%M %p")%>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding-left: 12px;padding-bottom: 10px;padding-right: 15px;padding-top: 4px;">
+                        <%= result['message']%>
+                    </div>
+                    <% if result['picture'].present?%>
+                        <div style="padding-left: 12px;padding-bottom: 10px;padding-right: 15px;padding-top: 4px;margin: 0 12px;">
+                            <img src=<%= result['picture']%> />
+                        </div>
+                    <%end%>
+                    <div style="border-top: 1px solid #e5e5e5;margin: 0 12px;padding-top: 4px;">
+                        <span id="#like_reload" style="margin:0px;">
+                            <%= render partial: 'fb_like', locals: {post: result} %>
+                        </span>
+                        <span>
+
+                        </span>
+                        <span>
+
+                        </span>
+
+                    </div>
+                    <!--<div><iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&width=450&layout=standard&action=like&size=small&show_faces=true&share=true&height=80&appId=645777708916185" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true"></iframe></div> -->
+                    <div style="border-top: 1px solid #e1e2e3;margin: 0;background-color: #f6f7f9;color: #898f9c;padding-top: 4px;word-wrap: break-word;border-radius: 0px 0px 3px 3px;width: auto;">
+                        <div style="padding-left: 12px;padding-right: 12px;padding-top: 4px;">
+                            <%if result['likes']['summary']['total_count']>0 %>
+                                <%count=0%>
+                                <%if result['likes']['summary']['has_liked']%>
+                                     <%=link_to "You, " ,href="https://www.facebook.com/#{@myid['id']}"%><%count+=1%>
+                                <%end%>
+                                <%flag=0%>
+                                <%count+=2%>
+                                <%for i in 0..2%><!--result['likes'['data'][0..1].each do |f|-->
+                                    <%if result['likes'].present?%>
+                                      <%if result['likes']['data'][i].present? %>
+                                          <%if flag<count%>
+                                                <%p=result['likes']['data'][i]%>
+                                                <%puts i%>
+                                              <%if p['name']==@myid['name']%>
+                                                   <%next%>
+                                              <%else%>
+                                                <%=link_to p['name'],href="https://www.facebook.com/#{p['id']}"%>,
+                                                <%puts p['name']%>
+                                                <%flag=flag+1%>
+                                              <%end%>
+                                          <%else%>
+                                              <%break%>
+                                          <%end%>
+                                      <%end%>
+                                    <%end%>
+                                <%end%>
+                                <%if (result['likes']['summary']['total_count']-count)>0%>
+                                  & <%=(result['likes']['summary']['total_count']-count)%>  other likes this post<br>
+                                <%elsif %>
+                                    likes this post
+                                <%end%>
+                            <%end%>
+                        </div>
+                        <%if result['comments']['summary']['total_count']>0%>
+                            <div style="border-top: 1px solid #e5e5e5;margin: 0 5px;padding-top: 4px;padding-bottom: 10px;">
+                                <%= link_to "View Comments",id: "view_comments",remote: true %>
+                            </div>
+                        <%end%>
+                    </div>
+                </li>
+            </div>
+        <% end %>
+    </ul>
+    <%= link_to 'Previous', url_for(:page => @results.previous_page_params , remote: true) %>
+    &nbsp;<%= link_to 'Next', url_for(:page => @results.next_page_params , remote: true) %>
+</div>
+<div style="height:8px;"></div>

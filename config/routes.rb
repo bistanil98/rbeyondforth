@@ -6,7 +6,7 @@ Rails.application.routes.draw {
 
   get 'users/fb_login'
 
-  get 'users/tw_login'
+  get 'users/twttr_login'
 
   get 'users/linkedin_login'
 
@@ -52,6 +52,14 @@ Rails.application.routes.draw {
 
   get 'market/google_analytics'
 
+  get 'market/facebook_pixel'
+
+  get 'market/market_basic_dashboard'
+
+  get 'market/market_interactive_charts'
+
+  get 'market/market_multiple_views'
+
   get 'market/market_grade'
 
   get 'market/market_grade_report'
@@ -68,20 +76,6 @@ Rails.application.routes.draw {
 
   get 'welcome/home'
 
-  post 'admins/index'
-
-  get 'admins/profile'
-
-  get 'admins/login'
-
-  get 'admins/logout'
-
-  get 'admins/change_password'
-
-  get 'admins/create_menu'
-
-  get 'admins/create_submenu'
-
   get 'seo/index'
 
   post 'password_reset/create'
@@ -94,79 +88,54 @@ Rails.application.routes.draw {
 
   resources :password_resets
 
+  get 'auth/facebook/callback', to: 'sessions#create_fb'
 
+  get 'auth/twitter/callback', to: 'sessions#create_twttr'
 
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
+  get 'auth/linkedin/callback', to: 'sessions#create_linkedin'
 
-  # You can have the root of your site routed with "root"
-  # 'welcome#index'
-  #match ':controller(/:action)'
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+  get 'auth/google_oauth2/callback', to: 'sessions#create_google'
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+  get 'auth/pinterest/callback', to: 'sessions#create_pinterest'
 
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-  get 'auth/:provider/callback', to: 'sessions#create_fb'
+  get 'auth/github/callback', to: 'sessions#create_github'
 
   get 'logout', to: 'sessions#destroy'
 
   get 'social_media/index'
 
-  get 'social_media/twitter_index'
-
   get 'social_media/fb_page_display'
 
+  get 'social_media/fb_data'
+
+  get 'social_media/fb_like'
+
+  get 'social_media/fb_unlike'
+
   get 'social_media/twitter_index'
+
+  get 'social_media/google_index'
+
+  get 'social_media/linkedin_index'
+
+  get 'social_media/post_on_linkedin_wall'
+  # get 'social_media/linkedin_oauth_url'
+
+  # get 'social_media/oauth_account'
+
+  get 'social_media/github_index'
+
+  get 'social_media/pinterest_index'
 
   post 'social_media/post_on_twitter_wall'
 
   get 'social_media/twitter_notification'
 
+  get 'social_media/refresh_twtr_home'
+
   post 'seo/seo_w3cvalidators'
+  #adding a test page to check the url form submittion blockage in get_seo_w3cvalidators.
+  get 'seo/seo_testpage'
 
   get 'seo/get_page_rank'
 
@@ -175,20 +144,6 @@ Rails.application.routes.draw {
   get 'seo/get_seo_w3cvalidators'
 
   get 'seo/get_post_page_rank'
-
-  get 'admins/charts'
-
-  get 'admins/dashboard'
-
-  get 'admins/reports'
-
-  get 'admins/forms'
-
-  get 'admins/elements'
-
-  get 'admins/grid'
-
-  get 'admins/blank'
 
   post 'seo/modal'
 
@@ -225,5 +180,9 @@ Rails.application.routes.draw {
   get "/" => "users#login", :as => "root"
 
   "map.webmaster_verification"
+
+  devise_for :admins
+
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
 }

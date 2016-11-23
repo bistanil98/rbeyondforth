@@ -1,0 +1,101 @@
+2016-07-29T13:46:04.380363+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+2016-07-29T13:46:04.380360+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `tap'
+2016-07-29T13:46:04.380365+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands.rb:17:in `<top (required)>'
+2016-07-29T13:46:04.380367+00:00 app[web.1]: 	from bin/rails:4:in `require'
+2016-07-29T13:46:04.421961+00:00 app[web.1]: => Rails 4.2.1 application starting in production on http://0.0.0.0:29718
+2016-07-29T13:46:04.421963+00:00 app[web.1]: => Ctrl-C to shutdown server
+2016-07-29T13:46:04.421962+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2016-07-29T13:46:04.380369+00:00 app[web.1]: 	from bin/rails:4:in `<main>'
+2016-07-29T13:46:04.421963+00:00 app[web.1]: Exiting
+2016-07-29T13:46:04.421959+00:00 app[web.1]: => Booting WEBrick
+2016-07-29T13:46:04.512084+00:00 heroku[web.1]: Process exited with status 1
+2016-07-29T13:46:04.526159+00:00 heroku[web.1]: State changed from crashed to starting
+2016-07-29T13:46:04.525138+00:00 heroku[web.1]: State changed from starting to crashed
+2016-07-29T13:46:08.600945+00:00 heroku[web.1]: Starting process with command `bin/rails server -p 14679 -e production`
+2016-07-29T13:46:15.125802+00:00 app[web.1]: /app/vendor/bundle/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/http/mime_type.rb:163: warning: previous definition of XLSX was here
+2016-07-29T13:46:15.125747+00:00 app[web.1]: /app/vendor/bundle/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/http/mime_type.rb:163: warning: already initialized constant Mime::PDF
+2016-07-29T13:46:15.125800+00:00 app[web.1]: /app/vendor/bundle/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/http/mime_type.rb:163: warning: already initialized constant Mime::XLSX
+2016-07-29T13:46:15.125772+00:00 app[web.1]: /app/vendor/bundle/ruby/2.2.0/gems/actionpack-4.2.1/lib/action_dispatch/http/mime_type.rb:163: warning: previous definition of PDF was here
+2016-07-29T13:46:15.501431+00:00 app[web.1]: /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/connection_adapters/connection_specification.rb:177:in `rescue in spec': Specified 'postgresql' for database adapter, but the gem is not loaded. Add `gem 'pg'` to your Gemfile (and ensure its version is at the minimum required by ActiveRecord). (Gem::LoadError)
+2016-07-29T13:46:15.501452+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/connection_adapters/connection_specification.rb:174:in `spec'
+2016-07-29T13:46:15.501453+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/connection_handling.rb:50:in `establish_connection'
+2016-07-29T13:46:15.501454+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/railtie.rb:120:in `block (2 levels) in <class:Railtie>'
+2016-07-29T13:46:15.501457+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/lazy_load_hooks.rb:38:in `instance_eval'
+2016-07-29T13:46:15.501458+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/lazy_load_hooks.rb:38:in `execute_hook'
+2016-07-29T13:46:15.501460+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/lazy_load_hooks.rb:44:in `each'
+2016-07-29T13:46:15.501461+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/lazy_load_hooks.rb:44:in `run_load_hooks'
+2016-07-29T13:46:15.501459+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/lazy_load_hooks.rb:45:in `block in run_load_hooks'
+2016-07-29T13:46:15.501462+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/base.rb:316:in `<module:ActiveRecord>'
+2016-07-29T13:46:15.501463+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/base.rb:26:in `<top (required)>'
+2016-07-29T13:46:15.627183+00:00 heroku[web.1]: Process exited with status 1
+2016-07-29T13:46:15.501464+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/relation/predicate_builder.rb:118:in `<class:PredicateBuilder>'
+2016-07-29T13:46:15.501464+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/relation/predicate_builder.rb:2:in `<module:ActiveRecord>'
+2016-07-29T13:46:15.501465+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record/relation/predicate_builder.rb:1:in `<top (required)>'
+2016-07-29T13:46:15.501466+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `require'
+2016-07-29T13:46:15.501466+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `block in require'
+2016-07-29T13:46:15.501467+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:240:in `load_dependency'
+2016-07-29T13:46:15.501470+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `require'
+2016-07-29T13:46:15.501470+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies/autoload.rb:70:in `block in eager_load!'
+2016-07-29T13:46:15.501471+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies/autoload.rb:70:in `each_value'
+2016-07-29T13:46:15.501472+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies/autoload.rb:70:in `eager_load!'
+2016-07-29T13:46:15.501472+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activerecord-4.2.1/lib/active_record.rb:158:in `eager_load!'
+2016-07-29T13:46:15.501473+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/application/finisher.rb:56:in `each'
+2016-07-29T13:46:15.501474+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/application/finisher.rb:56:in `block in <module:Finisher>'
+2016-07-29T13:46:15.501474+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/initializable.rb:30:in `instance_exec'
+2016-07-29T13:46:15.501480+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/initializable.rb:30:in `run'
+2016-07-29T13:46:15.501481+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/initializable.rb:55:in `block in run_initializers'
+2016-07-29T13:46:15.501482+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:226:in `block in tsort_each'
+2016-07-29T13:46:15.501484+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:348:in `block (2 levels) in each_strongly_connected_component'
+2016-07-29T13:46:15.501485+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:429:in `each_strongly_connected_component_from'
+2016-07-29T13:46:15.501486+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:347:in `block in each_strongly_connected_component'
+2016-07-29T13:46:15.501488+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:345:in `each'
+2016-07-29T13:46:15.501489+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:345:in `call'
+2016-07-29T13:46:15.501491+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:345:in `each_strongly_connected_component'
+2016-07-29T13:46:15.501493+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:224:in `tsort_each'
+2016-07-29T13:46:15.501495+00:00 app[web.1]: 	from /app/vendor/ruby-2.2.4/lib/ruby/2.2.0/tsort.rb:203:in `tsort_each'
+2016-07-29T13:46:15.501526+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/initializable.rb:54:in `run_initializers'
+2016-07-29T13:46:15.501527+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/application.rb:352:in `initialize!'
+2016-07-29T13:46:15.501529+00:00 app[web.1]: 	from /app/config/environment.rb:5:in `<top (required)>'
+2016-07-29T13:46:15.501531+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `require'
+2016-07-29T13:46:15.501532+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `block in require'
+2016-07-29T13:46:15.501534+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:240:in `load_dependency'
+2016-07-29T13:46:15.501536+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/activesupport-4.2.1/lib/active_support/dependencies.rb:274:in `require'
+2016-07-29T13:46:15.501540+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/builder.rb:55:in `instance_eval'
+2016-07-29T13:46:15.501538+00:00 app[web.1]: 	from /app/config.ru:3:in `block in <main>'
+2016-07-29T13:46:15.501565+00:00 app[web.1]: 	from /app/config.ru:in `new'
+2016-07-29T13:46:15.501564+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/builder.rb:55:in `initialize'
+2016-07-29T13:46:15.501565+00:00 app[web.1]: 	from /app/config.ru:in `<main>'
+2016-07-29T13:46:15.501568+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/builder.rb:49:in `new_from_string'
+2016-07-29T13:46:15.501570+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/builder.rb:40:in `parse_file'
+2016-07-29T13:46:15.501568+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/builder.rb:49:in `eval'
+2016-07-29T13:46:15.501572+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/server.rb:299:in `build_app_and_options_from_config'
+2016-07-29T13:46:15.501593+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/server.rb:208:in `app'
+2016-07-29T13:46:15.501594+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/server.rb:61:in `app'
+2016-07-29T13:46:15.501595+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/server.rb:336:in `wrapped_app'
+2016-07-29T13:46:15.501598+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/rack-1.6.4/lib/rack/server.rb:272:in `start'
+2016-07-29T13:46:15.501599+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/server.rb:80:in `start'
+2016-07-29T13:46:15.501601+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:80:in `block in server'
+2016-07-29T13:46:15.501603+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `tap'
+2016-07-29T13:46:15.501604+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:75:in `server'
+2016-07-29T13:46:15.501606+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands/commands_tasks.rb:39:in `run_command!'
+2016-07-29T13:46:15.501631+00:00 app[web.1]: 	from bin/rails:4:in `require'
+2016-07-29T13:46:15.501632+00:00 app[web.1]: 	from bin/rails:4:in `<main>'
+2016-07-29T13:46:15.501608+00:00 app[web.1]: 	from /app/vendor/bundle/ruby/2.2.0/gems/railties-4.2.1/lib/rails/commands.rb:17:in `<top (required)>'
+2016-07-29T13:46:15.550505+00:00 app[web.1]: => Booting WEBrick
+2016-07-29T13:46:15.550507+00:00 app[web.1]: => Rails 4.2.1 application starting in production on http://0.0.0.0:14679
+2016-07-29T13:46:15.550508+00:00 app[web.1]: => Run `rails server -h` for more startup options
+2016-07-29T13:46:15.550509+00:00 app[web.1]: => Ctrl-C to shutdown server
+2016-07-29T13:46:15.550509+00:00 app[web.1]: Exiting
+2016-07-29T13:46:15.638841+00:00 heroku[web.1]: State changed from starting to crashed
+2016-07-29T13:46:29.474008+00:00 heroku[api]: Starting process with command `bundle exec rake db:migrate` by bist.anil@soarlogic.com
+2016-07-29T13:46:36.012303+00:00 heroku[run.6905]: Awaiting client
+2016-07-29T13:46:36.041311+00:00 heroku[run.6905]: Starting process with command `bundle exec rake db:migrate`
+2016-07-29T13:46:35.948425+00:00 heroku[run.6905]: State changed from starting to up
+2016-07-29T13:46:46.380086+00:00 heroku[run.6905]: State changed from up to complete
+2016-07-29T13:46:46.363077+00:00 heroku[run.6905]: Process exited with status 1
+2016-07-29T13:47:53.390714+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=calm-peak-51253.herokuapp.com request_id=f984bdcf-20c0-479f-80e4-0a63536c53d4 fwd="203.193.159.250" dyno= connect= service= status=503 bytes=
+2016-07-29T13:47:56.611349+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=calm-peak-51253.herokuapp.com request_id=ea4a79d7-0160-42f7-9771-032a18b14c10 fwd="203.193.159.250" dyno= connect= service= status=503 bytes=
+2016-07-29T13:48:10.727993+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=calm-peak-51253.herokuapp.com request_id=d990fbd9-5460-4dcc-9f84-89349f56a961 fwd="203.193.159.250" dyno= connect= service= status=503 bytes=
+2016-07-29T13:48:11.783241+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=calm-peak-51253.herokuapp.com request_id=c8fab6d7-2474-4f39-b648-704b981c9c88 fwd="203.193.159.250" dyno= connect= service= status=503 bytes=
+2016-07-29T13:50:23.460541+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/" host=calm-peak-51253.herokuapp.com request_id=ed67e310-41f6-4fe2-b782-a74fb59f3e8c fwd="203.193.159.250" dyno= connect= service= status=503 bytes=
+2016-07-29T13:50:24.543840+00:00 heroku[router]: at=error code=H10 desc="App crashed" method=GET path="/favicon.ico" host=calm-peak-51253.herokuapp.com request_id=1a104ae2-eda1-4756-a0a0-ff493e6a7546 fwd="203.193.159.250" dyno= connect= service= status=503 bytes=

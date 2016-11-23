@@ -1,0 +1,46 @@
+
+
+    <%if post['comments']['summary']['total_count']>4%>
+        <div style="margin: 0 12px;padding: 4px 0;position: relative;">
+            <%=link_to "view all comments", id: "view_comments",remote: true%>
+        </div>
+    <%end%>
+
+        <div style="padding-bottom: 7px;padding-top: 4px;">
+            <%i=0%>
+            <%post['comments']['data'].each do |comm|%>
+                <%if i<=3%>
+                    <div style="margin: 0 12px;padding: 4px 0;position: relative;">
+                        <div>
+                            <div class="clearfix" spacing="medium" direction="left">
+                                <div style="float: left;">
+                                    <img src=<%= fb_comments(:cuid => "#{comm['from']['id']}") %> />
+                                </div>
+                                <div style="padding-right: 12px;position: relative;margin-left: 60px">
+                                    <div style="word-wrap: break-word;">
+                                           <span>
+                                               <%=link_to comm['from']['name']%>
+                                           </span>
+                                           <span>
+                                               <%= comm['message'] %>
+                                           </span>
+                                    </div>
+                                    <div style="word-wrap: break-word;">
+                                        <%=link_to "Like" ,'#'%>
+                                        <span role="presentation" aria-hidden="true">.</span>
+                                        <%=link_to "Reply" ,'#'%>
+                                        <span role="presentation" aria-hidden="true">.</span>
+                                        <span>
+                                           <%=comm['created_time'].to_datetime.strftime("%a %b %d %G at %I:%M %p")%>
+                                       </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <%i=i+1%>
+                <%else%>
+                    <%break%>
+                <%end%>
+            <%end%>
+        </div>

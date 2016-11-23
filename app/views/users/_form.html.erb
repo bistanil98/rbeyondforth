@@ -1,0 +1,19 @@
+<%= bootstrap_form_for :user,label_errors: true  do |f| %>
+    <p>
+        <%= f.text_field :name , class: "modify-form-control", required: true %>
+    </p>
+
+    <p>
+        <%= f.text_field :email, class: "modify-form-control", required: true %>
+    </p>
+
+    <p>
+        <%= f.password_field :password, class: "modify-form-control", required: true %>
+    </p>
+    <div class="field">
+        <%= f.password_field :password_confirmation, class: "modify-form-control", required: true %>
+    </div>
+    <p>
+        <%= f.submit  %>
+    </p>
+<% end %>

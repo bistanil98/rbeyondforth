@@ -4,7 +4,9 @@ source 'https://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
 # Use mysql as the database for Active Record
-gem 'mysql2'
+gem 'mysql2', '~> 0.3.18'
+
+# gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -22,7 +24,7 @@ gem 'bootstrap-sass'
 
 gem 'bootstrap_form'
 
-gem "breadcrumbs_on_rails"
+gem 'breadcrumbs_on_rails'
 
 gem 'responders'
 
@@ -49,15 +51,17 @@ gem 'omniauth-twitter'
 
 gem 'omniauth-instagram'
 
+gem 'omniauth-pinterest', '~> 2.0', '>= 2.0.1'
+
 gem 'twitter'
-#gem 'instagram'
+
+#gem 'instagram', '~> 1.1', '>= 1.1.6'
+
 gem 'omniauth-google-oauth2'
 
 gem 'omniauth-github', '~> 1.1', '>= 1.1.2'
 
-gem 'google-api-client', require: 'google/api_client'
-
-gem 'fb_graph'
+gem 'google-api-client', '0.8.2', require: 'google/api_client'
 
 gem  'w3c_validators'
 
@@ -114,7 +118,7 @@ gem 'pagespeed', '~> 0.1.0'
 
 gem 'wordlist', '~> 0.1.1'
 
-gem 'google-api-client'
+#gem 'google-api-client'
 
 gem 'rack-pagespeed-fork', '0.1.1'
 
@@ -130,15 +134,25 @@ gem "paperclip", "~> 4.3"
 
 gem 'omniauth-linkedin-oauth2', '~> 0.1.5'
 
-gem 'linkedin', '~> 1.0'
+gem "linkedin-oauth2", "~> 1.0"
 
-gem 'devise', '~> 3.5', '>= 3.5.2'
+gem 'devise', '~> 3.5', '>= 3.5.10'
 
-gem 'google-adwords-api', '~> 0.18.0'
+#gem 'google-adwords-api', '~> 0.18.0'
 
 gem 'legato', '~> 0.6.2'
 
 gem 'actionmailer', '~> 4.2', '>= 4.2.1'
 
-gem 'rake' , '~> 10.4.2'
+gem 'rake' , '~> 10.4.2', '>=10.4.2'
 
+gem 'rest-client', '~> 1.8'
+
+gem 'rails_admin', '~> 0.8.1'
+
+
+
+gem 'rails_12factor', group: :production
+
+
+ruby "2.0.0
