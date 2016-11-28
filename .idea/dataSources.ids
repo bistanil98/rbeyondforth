@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="PostgreSQL - rbeyondforth_development@localhost" uuid="2129a208-e4fe-401e-9e78-2cc71eeda632">
+  <data-source name="PostgreSQL - rbeyondforth_development@localhost" uuid="11935e0b-2ac0-458d-b5b4-c58764aaa2c4">
     <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
   </data-source>
 </component>
