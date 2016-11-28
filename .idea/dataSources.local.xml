@@ -1,20 +1,2 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="dataSourceStorageLocal">
-    <data-source name="MySQL - @localhost" uuid="0cba823f-18e5-4479-8435-8e5541f3d7e8" />
-    <data-source name="Rails rbeyondforth: development" uuid="97864b6f-6679-4e31-b47d-315d19149aea">
-      <user-name>root</user-name>
-      <user-password>dfd9dfc5dfcbdfd8dfc6dfc5dfcddfc3dfc9</user-password>
-    </data-source>
-    <data-source name="Rails rbeyondforth: test" uuid="404cc03d-4bf3-4a24-9259-999f0cbd63be">
-      <user-name>root</user-name>
-      <user-password>dfd9dfc5dfcbdfd8dfc6dfc5dfcddfc3dfc9</user-password>
-    </data-source>
-    <data-source name="Rails rbeyondforth: production" uuid="933eb2fe-06a6-4fb6-9c5d-5808f7dec5eb">
-      <user-name>rbeyondforth</user-name>
-      <user-password>df96df8fdf97df8adfefdfe4dffcdff1df8ddff8dfe8dfefdff3dfe5dfe4dfeedfecdfe5dff8dffedfe2dff5dfeedfebdffedfebdfe8dfebdff9dfefdff5dffadfebdff9dff9dffddfe5dff8dfeedf8ddff7df8adf8fdf94</user-password>
-    </data-source>
-    <data-source name="Rails rbeyondforth: test" uuid="13bb2c43-d19e-4a0b-b06b-7af0cc34d04b" />
-    <data-source name="Rails rbeyondforth: production" uuid="dd57c94d-b4bb-4c25-a224-15594fd8568c" />
-  </component>
-</project>
+<project version="4" />

@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20161116095907) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "admins", force: :cascade do |t|
     t.datetime "created_at",                                      null: false
     t.datetime "updated_at",                                      null: false
@@ -21,7 +24,7 @@ ActiveRecord::Schema.define(version: 20161116095907) do
     t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          limit: 4,   default: 0,  null: false
+    t.integer  "sign_in_count",                      default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip",     limit: 255
@@ -42,31 +45,31 @@ ActiveRecord::Schema.define(version: 20161116095907) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "site_uri",   limit: 255
-    t.text     "error_data", limit: 4294967295
-    t.integer  "errnum",     limit: 4
+    t.text     "error_data"
+    t.integer  "errnum"
   end
 
   create_table "social_media", force: :cascade do |t|
     t.string   "provider",                   limit: 255
     t.string   "uid",                        limit: 255
     t.string   "social_email",               limit: 255
-    t.text     "token",                      limit: 65535
+    t.text     "token"
     t.datetime "expire_at"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
     t.string   "profile_image_file_name",    limit: 255
     t.string   "profile_image_content_type", limit: 255
-    t.integer  "profile_image_file_size",    limit: 4
+    t.integer  "profile_image_file_size"
     t.datetime "profile_image_updated_at"
-    t.integer  "user_id",                    limit: 4
+    t.integer  "user_id"
     t.string   "profile_name",               limit: 255
   end
 
   add_index "social_media", ["user_id"], name: "index_social_media_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.datetime "created_at",                                        null: false
-    t.datetime "updated_at",                                        null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.string   "name",                   limit: 255
     t.string   "email",                  limit: 255
     t.string   "password_digest",        limit: 255
@@ -76,11 +79,11 @@ ActiveRecord::Schema.define(version: 20161116095907) do
     t.datetime "password_reset_sent_at"
     t.string   "image_file_name",        limit: 255
     t.string   "image_content_type",     limit: 255
-    t.integer  "image_file_size",        limit: 4
+    t.integer  "image_file_size"
     t.datetime "image_updated_at"
     t.string   "roleid",                 limit: 255
-    t.integer  "expire_period",          limit: 4,   default: 90
-    t.boolean  "status_active",          limit: 1,   default: true
+    t.integer  "expire_period",                      default: 90
+    t.integer  "status_active",          limit: 2
     t.datetime "password_updated_at"
     t.datetime "auth_token_expires_at"
   end

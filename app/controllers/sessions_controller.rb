@@ -120,10 +120,10 @@ class SessionsController < ApplicationController
   end #create_github ends here
 
   def destroy
-    u = SocialMedium.find_by_user_id(session[:user_id])
-    if u.update(token:nil)
-      puts "token has been removed"
-    end
+    # u = SocialMedium.find_by_user_id(session[:user_id])
+    # if u.update(token:nil)
+    #   puts "token has been removed"
+    # end
     #clear_facebook_session_information
     session[:user_id] = nil
     session[:user_name] = nil

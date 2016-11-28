@@ -9,11 +9,20 @@
 # And be sure to use new-style password hashing:
 #   http://dev.mysql.com/doc/refman/5.0/en/old-client.html
 #
+#added new postgre configuration for database to test the deployment of application
+#on heroku
+#
+#for postgres use username postgres
+#password soarlogic
+#for mysql2 use username root
+#password soarlogic
+
+
 default: &default
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   pool: 5
-  username: root
+  username: postgres
   password: soarlogic
   host: localhost
 
@@ -47,6 +56,7 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+
 production:
   <<: *default
   database: rbeyondforth_production
