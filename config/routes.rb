@@ -183,6 +183,5 @@ Rails.application.routes.draw {
 
   devise_for :admins
 
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
 
 }

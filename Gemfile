@@ -148,7 +148,6 @@ gem 'rake' , '~> 10.4.2', '>=10.4.2'
 
 gem 'rest-client', '~> 1.8'
 
-gem 'rails_admin', '~> 0.8.1'
 
 
 
