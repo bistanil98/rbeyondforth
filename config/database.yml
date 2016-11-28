@@ -59,6 +59,6 @@ test:
 
 production:
   <<: *default
-  database: rbeyondforth_production
-  username: rbeyondforth
-  password: <%= ENV['RBEYONDFORTH_DATABASE_PASSWORD'] %>
+  database: d5mtam5i2fqh29
+  username: dyvwvlfgqsmqyc
+  password: iqkns6sPPQia5bHHKeCJfhSzm-

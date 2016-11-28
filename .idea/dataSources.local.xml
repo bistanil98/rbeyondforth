@@ -3,8 +3,9 @@
   <component name="dataSourceStorageLocal">
     <data-source name="PostgreSQL - rbeyondforth_development@localhost" uuid="11935e0b-2ac0-458d-b5b4-c58764aaa2c4">
       <secret-storage>master_key</secret-storage>
-      <first-sync>true</first-sync>
       <user-name>AnilSingh</user-name>
+      <schema-pattern>rbeyondforth_development.pg_catalog rbeyondforth_development.public</schema-pattern>
+      <default-schemas>rbeyondforth_development.pg_catalog rbeyondforth_development.public</default-schemas>
     </data-source>
   </component>
 </project>
