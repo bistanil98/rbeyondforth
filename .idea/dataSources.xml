@@ -1,2 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project version="4" />
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" hash="1628105579">
+    <data-source source="LOCAL" name="PostgreSQL - rbeyondforth_development@localhost" uuid="2129a208-e4fe-401e-9e78-2cc71eeda632">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/rbeyondforth_development</jdbc-url>
+      <libraries />
+    </data-source>
+  </component>
+</project>
