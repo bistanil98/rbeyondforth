@@ -1398,25 +1398,17 @@
       <column name="viewowner" sqlType="name" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="definition" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
     </table>
-    <table name="admins" schema="public" catalog="rbeyondforth_development" type="TABLE">
-      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYWRtaW5zX2lkX3NlcSc6OnJlZ2NsYXNzKQ==" autoIncrement="true"/>
+    <table name="blogs" schema="public" catalog="rbeyondforth_development" type="TABLE">
+      <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnYmxvZ3NfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
+      <column name="blog_title" sqlType="varchar" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
+      <column name="blog_desc" sqlType="text" precision="2147483647" scale="0" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
       <column name="updated_at" sqlType="timestamp" precision="29" scale="6" nullable="false" jdbcType="93"/>
-      <column name="email" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
-      <column name="encrypted_password" sqlType="varchar" precision="255" scale="0" nullable="false" jdbcType="12" def="Jyc="/>
-      <column name="reset_password_token" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="reset_password_sent_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
-      <column name="remember_created_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
-      <column name="sign_in_count" sqlType="int4" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
-      <column name="current_sign_in_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
-      <column name="last_sign_in_at" sqlType="timestamp" precision="29" scale="6" nullable="true" jdbcType="93"/>
-      <column name="current_sign_in_ip" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <column name="last_sign_in_ip" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>
-      <primary-key name="admins_pkey" columns="id"/>
-      <index name="index_admins_on_email" unique="true" columns="email"/>
-      <index name="index_admins_on_reset_password_token" unique="true" columns="reset_password_token"/>
+      <column name="user_id" sqlType="int4" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="blogs_pkey" columns="id"/>
+      <index name="index_blogs_on_user_id" unique="false" columns="user_id"/>
     </table>
-    <table name="admins_id_seq" schema="public" catalog="rbeyondforth_development" type="SEQUENCE"/>
+    <table name="blogs_id_seq" schema="public" catalog="rbeyondforth_development" type="SEQUENCE"/>
     <table name="menus" schema="public" catalog="rbeyondforth_development" type="TABLE">
       <column name="id" sqlType="serial" precision="10" scale="0" nullable="false" jdbcType="4" def="bmV4dHZhbCgnbWVudXNfaWRfc2VxJzo6cmVnY2xhc3Mp" autoIncrement="true"/>
       <column name="name" sqlType="varchar" precision="255" scale="0" nullable="true" jdbcType="12"/>

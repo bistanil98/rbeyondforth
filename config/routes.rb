@@ -181,7 +181,5 @@ Rails.application.routes.draw {
 
   "map.webmaster_verification"
 
-  devise_for :admins
-
 
 }
