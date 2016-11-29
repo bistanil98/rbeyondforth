@@ -41,7 +41,8 @@ class SessionsController < ApplicationController
     if (user or s_user) && user.authenticate(params[:user][:password])
       session[:user_id] = user.id
       session[:user_name] = user.name
-      session[:user_image] = user.image
+      # session[:user_image] = user.image
+      # puts "#{session[:user_image]}"
       if params[:remember_me]
         cookies.permanent[:auth_token] = user.auth_token
       else
