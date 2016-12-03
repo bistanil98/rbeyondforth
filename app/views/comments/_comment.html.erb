@@ -1,5 +1,5 @@
 <p>
-    <strong><%= comment.user.name %> </strong>
+    <strong><%= comment.user.name if comment.user.present?%> </strong>
     <%= comment.comment_body %>
 
 </p>
@@ -8,5 +8,8 @@
 </p>
 
 <p>
-    <%= link_to 'Delete Comment', [comment.blog, comment], method: :delete, data: {confirm: "Are you sure"} %>
+    <% if session[:user_id] == comment.user_id %>
+        <% puts "Current user is the comment author, curent user: #{session[:user_id]} | comment author: #{comment.user_id}" %>
+        <%= link_to 'Delete Comment', [comment.blog, comment], method: :delete, data: {confirm: "Are you sure"} %>
+    <%end%>
 </p>

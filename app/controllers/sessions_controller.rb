@@ -126,6 +126,7 @@ class SessionsController < ApplicationController
     #   puts "token has been removed"
     # end
     #clear_facebook_session_information
+    current_user = nil
     session[:user_id] = nil
     session[:user_name] = nil
     session[:user_image] = nil

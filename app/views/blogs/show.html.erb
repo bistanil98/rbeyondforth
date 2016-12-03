@@ -41,6 +41,8 @@
     <h4><%= @blog.comments.count %> comments</h4>
     </p>
     <%= render @blog.comments %>
-    <h3>Add a comment</h3>
-    <%= render 'comments/form' %>
+    <%if user_is_logged_in? %>
+        <h3>Add a comment</h3>
+        <%= render 'comments/form' %>
+    <%end%>
 </div>
