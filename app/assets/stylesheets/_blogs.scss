@@ -1,0 +1,150 @@
+// Place all the styles related to the Blogs controller here.
+// They will automatically be included in application.scss.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.blogs.index {
+  .new-blog {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #181818;
+    height: 400px;
+    margin-bottom: 20px;
+    padding: 10px;
+    .btn-new {
+      background-color: #e8e8e8;
+      font-weight: 300;
+      border-radius: 0;
+      color: black;
+      &:hover {
+        background-color: #d8d8d8;
+      }
+    }
+  }
+  .card {
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #181818;
+    height: 400px;
+    margin-bottom: 20px;
+    .card-topper {
+      height: 200px;
+      width: 100%;
+      background-size: cover;
+      background-position: center;
+    }
+    .card-block {
+      padding: 10px;
+      .btn-read {
+        background-color: #e8e8e8;
+        font-weight: 300;
+        border-radius: 0;
+        color: black;
+        &:hover {
+          background-color: #d8d8d8;
+        }
+      }
+      .btn-edit {
+        background-color: #e8e8e8;
+        font-weight: 300;
+        border-radius: 0;
+        color: black;
+        &:hover {
+          background-color: #d8d8d8;
+        }
+      }
+      .card-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.5rem;
+        a {
+          color: black;
+          text-decoration: none;
+        }
+      }
+      .published-date {
+        font-size: 0.8rem;
+        color: #787878;
+        font-weight: 300;
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+      }
+      .card-text {
+        font-size: 0.9rem;
+      }
+    }
+  }
+}
+.blogs.edit , .blogs.new {
+  .token-input-list-facebook {
+    background-color: #f7f7f9;
+    width: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 0.25rem;
+  }
+  .card {
+    .card-block {
+      text-align: left;
+      background-color: #f7f7f9;
+    }
+    .card-title{
+      text-align: left;
+      margin-bottom: 0;
+      font-size: 20px;
+      background-color: #f7f7f9;
+    }
+    .list-group-item {
+      padding: 10px;
+      border-left: 0;
+      border-right: 0;
+      input[type='url'], input[type='text'] {
+        font-size: 14px;
+        background-color: #f7f7f9;
+      }
+      &:last-child {
+        background-color: #f7f7f9;
+      }
+    }
+  }
+}
+.blogs.show {
+  .card {
+    width: 100%;
+    height: auto;
+    .card-header {
+      text-align: left;
+      text-align: left;
+      margin-bottom: 0;
+      font-size: 20px;
+      background-color: #eceeef;
+    }
+    .card-block {
+      text-align: left;
+    }
+    .list-group-item {
+      text-align: left;
+      padding: 10px;
+      border-left: 0;
+      border-right: 0;
+      input[type='url'], input[type='text'] {
+        font-size: 14px;
+      }
+    }
+  }
+}
+@media screen and (min-width:34em) {
+  .blogs.index .card {
+    height: 440px;
+  }
+}
+
+/*Medium. Above 48em (768px) */
+@media screen and (min-width: 48em) {
+  .blogs.index .card {
+    height: 420px;
+  }
+}
+
+/*Extra large. Above 75em (1200px) */
+@media screen and (min-width: 75em) {
+  .blogs.index .card {
+    height: 415px;
+  }
+}

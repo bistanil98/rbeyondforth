@@ -1,0 +1,52 @@
+<%= simple_form_for(@blog, url: url, :html => {novalidate: false}) do |f| %>
+<%= f.error_notification %>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-block">
+                <% if @blog.new_record? %>
+                    <h3 class="card-blog_title"><%= yield(:page_blog_title) %></h3>
+                <% else %>
+                    <h3 class="card-blog_title"><b>Edit</b>
+                        <h5>
+                            <span class="thin-text"><%= @blog.blog_title %></span>
+                        </h5></h3>
+                <% end %>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <div class="form-inputs">
+                        <%= f.input :blog_title, required: true%>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="form-inputs">
+                        <%= f.input :blog_category_name, :input_html =>{ data: {autocomplete_source: categories_path}} %>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="form-inputs">
+                        <%= f.input :tag_tokens, :input_html =>{data: {load_source: @blog.tags.collect {|tag| {:id => tag.id, :name => tag.tag_name } }}}%>
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <div class="form-actions">
+                        <%= f.button :submit, class: 'btn btn-success btn-block' %>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <% if @blog.persisted? %>
+            <%= link_to 'Show', @blog, class: 'btn btn-sm btn-info' %> |
+        <% end %>
+        <%= link_to 'Back', users_blog_index_path, class: 'btn btn-sm btn-primary'%>
+    </div>
+    <div class="col-md-8">
+        <div class="form-inputs">
+            <%= f.input :blog_description, label: false%>
+        </div>
+    </div>
+</div>
+<% end %>
+

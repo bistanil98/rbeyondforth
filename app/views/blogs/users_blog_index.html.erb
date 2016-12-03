@@ -1,0 +1,12 @@
+<% provide(:page_title, 'All Post') %>
+<div class="row">
+<%= link_to 'New Post', new_blog_path, class: 'btn btn-primary btn-lg' %>
+    <br>
+    <br>
+    <table class="table table-striped">
+        <tr>
+            <th colspan="4">Title</th>
+        </tr>
+        <%= render @blogs %>
+    </table>
+</div>

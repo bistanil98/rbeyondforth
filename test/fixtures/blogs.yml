@@ -2,8 +2,8 @@
 
 one:
   blog_title: MyString
-  blog_desc: MyText
+  blog_description: MyText
 
 two:
   blog_title: MyString
-  blog_desc: MyText
+  blog_description: MyText

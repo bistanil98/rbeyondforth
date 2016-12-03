@@ -181,5 +181,33 @@ Rails.application.routes.draw {
 
   "map.webmaster_verification"
 
+  get 'blogs/blogs_index' => 'blogs#index', as: :blogs_index
+
+  get 'blogs/users_blog_index' => 'blogs#users_blog_index', as: :users_blog_index
+
+  post 'blogs/users_blog_index' => 'blogs#create', as: :create
+
+  resources :blogs, :except => ["index","create"]
+
+  get 'blogs/:blog_id/comments' => 'comments#index', as: :blog_comments
+
+  post 'blogs/:blog_id/comments' => 'comments#create', as: :create_blog_comment
+
+  get 'blogs/:blog_id/comments/new' => 'comments#new', as: :new_blog_comment
+
+  get 'blogs/:blog_id/comments/:id/edit' => 'comments#edit', as: :edit_blog_comment
+
+  get 'blogs/:blog_id/comments/:id' => 'comments#show', as: :blog_comment
+
+  patch 'blogs/:blog_id/comments/:id' => 'comments#update', as: :patch_update_blog_comment
+
+  put 'blogs/:blog_id/comments/:id' => 'comments#update', as: :put_update_blog_comment
+
+  delete 'blogs/:blog_id/comments/:id' => 'comments#destroy', as: :destroy_blog_comment
+
+
+  resources :categories, :only => "index"
+
+  resources :tags, :only => "index"
 
 }

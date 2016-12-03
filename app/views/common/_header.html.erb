@@ -63,10 +63,10 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">Academy<b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li>
-                            <%= link_to 'Popular Blog', '#' %>
+                            <%= link_to 'Popular Blog', blogs_index_path %>
                         </li>
                         <li>
-                            <%= link_to 'Latest Blog', '#' %>
+                            <%= link_to 'Latest Blog', blogs_index_path %>
                         </li>
                         <li>
                             <%= link_to 'Articles', '#' %>
@@ -150,6 +150,7 @@
                 <% else %>
                 <li >
                     <div>
+                        <% @user = User.find_by_id(session[:user_id]) %>
                         <%= link_to(image_tag(@user.image, :alt => "user image",:class=>"img-circle id_img")) %>
                     </div>
                 </li>

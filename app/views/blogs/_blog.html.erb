@@ -1,0 +1,19 @@
+<%unless user_is_logged_in? %>
+    <div class="col-sm-6 col-lg-4">
+    <div class="card">
+        <div class="card-block">
+            <h4 class="card-title"><%= blog.blog_title %></h4>
+            <p class="published-date"><%= blog.display_day_published %></p>
+            <p class="card-text"><%= truncate(strip_tags(blog.blog_description.html_safe), length: 130) %></p>
+            <%= link_to 'Read', blog, class: 'btn btn-read' %>
+        </div>
+    </div>
+    </div>
+<% else %>
+    <tr>
+        <td><%= link_to blog.blog_title, blog_path(blog) %></td>
+        <td></td>
+        <td><%= link_to 'Edit', edit_blog_path(blog), :class => 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Remove', blog_path(blog), method: :delete, data: {:confirm => "Are you sure?"}, class: 'btn btn-sm btn-danger' %></td>
+    </tr>
+<% end %>

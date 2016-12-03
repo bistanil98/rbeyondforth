@@ -33,6 +33,8 @@ gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
+gem 'jquery-ui-rails'
+
 gem 'jquery-turbolinks'
 
 gem 'PageRankr'
@@ -149,7 +151,9 @@ gem 'rake' , '~> 10.4.2', '>=10.4.2'
 gem 'rest-client', '~> 1.8'
 
 
+gem 'simple_form'
 
+gem 'friendly_id', '~> 5.1.0'
 
 gem 'rails_12factor', group: :production
 

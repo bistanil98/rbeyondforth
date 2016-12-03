@@ -1,11 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="DataSourceManagerImpl" format="xml" hash="2239452168">
+  <component name="DataSourceManagerImpl" format="xml" hash="2357797294">
     <data-source source="LOCAL" name="PostgreSQL - rbeyondforth_development@localhost" uuid="11935e0b-2ac0-458d-b5b4-c58764aaa2c4">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/rbeyondforth_development</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails rbeyondforth: development" uuid="e73b6832-e953-46a9-9b3c-ec31bc1f457e">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/rbeyondforth_development</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails rbeyondforth: test" uuid="8e4bb65b-ba0c-4a13-9571-863c646b1837">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/rbeyondforth_test</jdbc-url>
+      <libraries />
+    </data-source>
+    <data-source source="LOCAL" name="Rails rbeyondforth: production" uuid="f02d7d6d-b54d-4da2-b128-c5fa4a6e3965">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://127.0.0.1/d5mtam5i2fqh29</jdbc-url>
       <libraries />
     </data-source>
   </component>

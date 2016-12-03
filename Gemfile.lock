@@ -120,6 +120,8 @@ GEM
       faraday (>= 0.7.4, < 0.10)
     fastimage (1.7.0)
       addressable (~> 2.3, >= 2.3.5)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.5)
       activesupport (>= 4.1.0)
     google-api-client (0.8.2)
@@ -159,6 +161,8 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-ui-rails (5.0.5)
+      railties (>= 3.2.16)
     jsmin (1.0.1)
     json (1.8.3)
     jsonpath (0.5.7)
@@ -338,6 +342,9 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    simple_form (3.3.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     simple_oauth (0.3.1)
     spidr (0.4.1)
       nokogiri (~> 1.3)
@@ -418,11 +425,13 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   devise (~> 3.5, >= 3.5.10)
+  friendly_id (~> 5.1.0)
   google-api-client (= 0.8.2)
   heroku-deflater (~> 0.5.3)
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   koala (~> 2.2.0)
   lazybox (~> 1.0, >= 1.0.2)
   legato (~> 0.6.2)
@@ -455,6 +464,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   seo_params
+  simple_form
   spinjs-rails (~> 1.4)
   spring
   therubyracer
@@ -472,4 +482,4 @@ RUBY VERSION
    ruby 2.0.0p648
 
 BUNDLED WITH
-   1.12.5
+   1.13.6

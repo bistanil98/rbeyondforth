@@ -7,5 +7,22 @@
       <schema-pattern>rbeyondforth_development.pg_catalog rbeyondforth_development.public</schema-pattern>
       <default-schemas>rbeyondforth_development.pg_catalog rbeyondforth_development.public</default-schemas>
     </data-source>
+    <data-source name="Rails rbeyondforth: development" uuid="e73b6832-e953-46a9-9b3c-ec31bc1f457e">
+      <user-name>AnilSingh</user-name>
+      <user-password>dfd9dfc5dfcbdfd8dfc6dfc5dfcddfc3dfc9</user-password>
+      <schema-pattern>rbeyondforth_development.pg_catalog rbeyondforth_development.public</schema-pattern>
+      <default-schemas>rbeyondforth_development.pg_catalog rbeyondforth_development.public</default-schemas>
+    </data-source>
+    <data-source name="Rails rbeyondforth: test" uuid="8e4bb65b-ba0c-4a13-9571-863c646b1837">
+      <user-name>AnilSingh</user-name>
+      <user-password>dfd9dfc5dfcbdfd8dfc6dfc5dfcddfc3dfc9</user-password>
+      <schema-pattern>rbeyondforth_test.pg_catalog rbeyondforth_test.public</schema-pattern>
+      <default-schemas>rbeyondforth_test.pg_catalog rbeyondforth_test.public</default-schemas>
+    </data-source>
+    <data-source name="Rails rbeyondforth: production" uuid="f02d7d6d-b54d-4da2-b128-c5fa4a6e3965">
+      <first-sync>true</first-sync>
+      <user-name>dyvwvlfgqsmqyc</user-name>
+      <user-password>dfc3dfdbdfc1dfc4dfd9df9cdfd9dffadffadffbdfc3dfcbdf9fdfc8dfe2dfe2dfe1dfcfdfe9dfe0dfccdfc2dff9dfd0dfc7df87</user-password>
+    </data-source>
   </component>
 </project>

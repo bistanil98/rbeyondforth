@@ -30,7 +30,7 @@ class NodeMincerTest < Minitest::Test
     end
     assert success, 'Node.js Mincer compilation failed'
     manifest = JSON.parse(File.read("#{tmp_dir}/manifest.json"))
-    css_name = manifest["assets"]["application.css"]
+    css_name = manifest["assets"]["application.scss"]
     @css = File.read("#{tmp_dir}/#{css_name}")
   end
 end

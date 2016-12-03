@@ -1,0 +1,46 @@
+<% provide(:page_title, @blog.blog_title) %>
+<% provide(:blog_active, 'active') %>
+<% if user_is_logged_in? && current_user == @blog.user %>
+    <div style="padding-bottom: 5px;">
+        <td><%= link_to 'Edit', edit_blog_path(@blog), class: 'btn btn-sm btn-warning' %></td>
+        <td><%= link_to 'Remove', blog_path(@blog), method: :delete, data: {:confirm => "Are you sure?"}, class: 'btn btn-sm btn-danger' %></td>
+    </div>
+<% end %>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h3><%= @blog.blog_title %></h3>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><%= @blog.display_day_published %>&nbsp; | &nbsp;<%= @blog.display_day_updated %></li>
+                <li class="list-group-item"><%= @blog.display_publisher_name %>&nbsp; | &nbsp;<%= @blog.display_publisher_email %></li>
+                <li class="list-group-item">Category: <%= @blog.category && @blog.category.category_name %></li>
+                <li class="list-group-item">
+                    Tags:
+                    <% @blog.tags.each do |tag| %>
+                        <%= tag.tag_name %>
+                        <% unless tag == @blog.tags.last && tag != @blog.tags.first %>
+                            ,
+                        <%end%>
+                    <% end %>
+                </li>
+
+            </ul>
+            <div class="card-block">
+                <blockquote class="card-blockquote">
+                    <p><%= @blog.blog_description.html_safe %></p>
+                </blockquote>
+            </div>
+        </div>
+        <%= link_to 'Back', blogs_index_path, class: 'btn btn-sm btn-primary' %>
+    </div>
+</div>
+<div>
+    <p>
+    <h4><%= @blog.comments.count %> comments</h4>
+    </p>
+    <%= render @blog.comments %>
+    <h3>Add a comment</h3>
+    <%= render 'comments/form' %>
+</div>

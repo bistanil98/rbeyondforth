@@ -29,7 +29,9 @@
                             </li>
                             <li><a href="#">Customer Examples</a></li>
                             <li><a href="#">Users Group</a></li>
-                            <li><a href="#">Academy Blog</a></li>
+                            <% if user_is_logged_in? %>
+                                <li><%= link_to "#{session[:user_name]} Blog", users_blog_index_path %></li>
+                            <% end %>
                         </ul>
                 </nav>
                     <div style="padding: 10px;">

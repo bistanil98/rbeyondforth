@@ -1,0 +1,9 @@
+<%= simple_form_for([@blog, @blog.comments.build], :html => {novalidate: false}) do |f| %>
+
+    <p>
+        <%= f.input :comment_body, required: true%>
+    </p>
+    <p>
+        <%= f.submit %>
+    </p>
+<% end %>
