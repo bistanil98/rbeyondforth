@@ -1,7 +1,6 @@
 /**
  * Created by AnilSingh on 21/01/16.
  */
-document.on("ready", )
 var API_KEY = 'AIzaSyCrMW_xW6i82Vbzbh5f-DqXpMK644ihN0A';
 
 // Specify the URL you want PageSpeed results for here:

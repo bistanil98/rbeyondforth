@@ -16,8 +16,9 @@
  *= require rails_bootstrap_forms
  *= require jquery-ui
  *= require token-input-facebook
- *= require_self
- *= require_tree
+ *= require bootstrap/css/bootstrap.icon-large.min
+ *= require bootstrap/css/bootstrap.min
+ *= require font_awesome/css/font-awesome
  */
 
 @import "lazybox";
