@@ -1,10 +1,10 @@
 /**
  * Created by AnilSingh on 21/01/16.
  */
-var API_KEY = 'AIzaSyCrMW_xW6i82Vbzbh5f-DqXpMK644ihN0A';
+var API_KEY = 'AIzaSyAWZ17YrFIp4wxDtMnQVcS4CGQQTpZ3ZJ0';
 
 // Specify the URL you want PageSpeed results for here:
-var URL_TO_GET_RESULTS_FOR = 'https://developers.google.com/speed/pagespeed/insights/'
+var URL_TO_GET_RESULTS_FOR = window.location.href;
 var API_URL = 'https://www.googleapis.com/pagespeedonline/v2/runPagespeed?';
 var CHART_API_URL = 'http://chart.apis.google.com/chart?';
 
@@ -24,7 +24,8 @@ function runPagespeed() {
         'key=' + API_KEY,
     ].join('&');
     s.src = API_URL + query;
-    document.head.insertBefore(s, null);
+    alert(s.src);
+    //document.head.insertBefore(s, null);
 }
 
 // Our JSONP callback. Checks for errors, then invokes our callback handlers.
@@ -32,16 +33,17 @@ function runPagespeedCallbacks(result) {
     if (result.error) {
         var errors = result.error.errors;
         for (var i = 0, len = errors.length; i < len; ++i) {
-            if (errors[i].reason == 'badRequest' && API_KEY == 'AIzaSyCrMW_xW6i82Vbzbh5f-DqXpMK644ihN0A') {
+            if (errors[i].reason == 'badRequest' ) {
                 alert('Please specify your Google API key in the API_KEY variable.');
             } else {
                 // NOTE: your real production app should use a better
                 // mechanism than alert() to communicate the error to the user.
-                alert(errors[i].message);
+                alert(errors[i].reason);
             }
         }
         return;
     }
+
 
 // Dispatch to each function on the callbacks object.
     for (var fn in callbacks) {

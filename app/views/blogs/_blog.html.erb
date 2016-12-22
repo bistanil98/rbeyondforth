@@ -1,19 +1,27 @@
-<%unless user_is_logged_in? %>
-    <div class="col-sm-6 col-lg-4">
-    <div class="card">
-        <div class="card-block">
-            <h4 class="card-title"><%= blog.blog_title %></h4>
-            <p class="published-date"><%= blog.display_day_published %></p>
-            <p class="card-text"><%= truncate(strip_tags(blog.blog_description.html_safe), length: 130) %></p>
-            <%= link_to 'Read', blog, class: 'btn btn-read' %>
+<div class="col-md-12">
+    <div class="col-md-4 margin_top margin_bottom">
+        <img src="\assets\400.jpg" alt="banner image url" width="100%"></img>
+        <div class="post-meat">
+            <a href="#"><%= blog.category.category_name %></a>
         </div>
     </div>
+    <div class="col-md-8" style="margin-top: 8px;">
+        <h2 class="post-title "><%= link_to blog.blog_title.titleize, blog%></h2>
+        <div class="title-secondary">
+
+
+            <span class="fa fa-pencil-square-o"></span>
+            <span class="post-author vcard">
+                <span class="fn" itemprop="author" itemscope="itemscope">
+                     <span itemprop="name"><%= blog.display_publisher_name.titleize %></span>
+                </span>
+            </span>
+
+            &nbsp;
+            <span class="post-timestamp"><i class="fa fa-calendar-o"></i>
+                <span class="published" itemprop="datePublished" title="2014-04-23T15:40:00-07:00"><%= blog.display_day_published %></span>
+            </span>
+        </div>
+        <p><%= truncate(strip_tags(blog.blog_description.html_safe), length: 130) %></p>
     </div>
-<% else %>
-    <tr>
-        <td><%= link_to blog.blog_title, blog_path(blog) %></td>
-        <td></td>
-        <td><%= link_to 'Edit', edit_blog_path(blog), :class => 'btn btn-sm btn-warning' %></td>
-        <td><%= link_to 'Remove', blog_path(blog), method: :delete, data: {:confirm => "Are you sure?"}, class: 'btn btn-sm btn-danger' %></td>
-    </tr>
-<% end %>
+</div>

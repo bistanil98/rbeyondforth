@@ -1,4 +1,122 @@
 <% provide(:page_title, 'All Posts') %>
-<div class="row">
-    <%= render @blogs %>
+<div class="container">
+    <div class="col-md-12 margin_bottom">
+
+        <div class="col-md-8">
+            <div class="col-md-12 bgclor ">
+                <div class="brick">
+                    <div id="posttype">
+                        <h4><a href="#">Featured Posts</a></h4>
+                    </div>
+                    <div class="col-md-12 bgclor">
+                        <div class="col-md-4 margin_top">
+                            <div>
+                                <img src="\assets\400.jpg" width="100%"></img>
+                            </div>
+                            <div id="category">
+                                <a>App</a>
+                            </div>
+                            <h3><a href="#">Iconic One is the Key to your Blogging Success</a></h3>
+                        </div>
+                        <div class="col-md-4 margin_top">
+                            <div>
+                                <img src="\assets\400.jpg" width="100%"></img>
+                            </div>
+                            <div id="category">
+                                <a>App</a>
+                            </div>
+                            <h3><a href="#">Iconic One is the Key to your Blogging Success</a></h3>
+                        </div>
+                        <div class="col-md-4 margin_top margin_bottom">
+                            <div>
+                                <img src="\assets\400.jpg" width="100%"></img>
+                            </div>
+                            <div id="category">
+                                <a>App</a>
+                            </div>
+                            <h3><a href="#">Iconic One is the Key to your Blogging Success</a></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-12 bgclor">
+                <div>
+                    <%= paginate @blogs%>
+                </div>
+                <%= render @blogs %>
+            </div>
+        </div>
+
+
+        <div class="col-md-4 row">
+
+            <div class="col-md-12 bgclor">
+                <div class="col-md-12 margin_top margin_bottom">
+                    <form>
+                        <input type="search" name="search" placeholder="Search.." id="searchbox">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-12 bgclor">
+                <div class="col-md-12 container" style="border-bottom: 2px solid #eee;">
+                    <h4>Popular Posts<h4>
+                </div>
+
+                <div class="col-md-12 row margin_top margin_bottom">
+                    <div class="col-md-5">
+                        <img src="\assets\400.jpg" width="100%"></img>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="#"><p>Youtube Embeded Video For Exotic Cars</p></a>
+                    </div>
+                </div>
+
+                <div class="col-md-12 row margin_top margin_bottom">
+                    <div class="col-md-5">
+                        <img src="\assets\400.jpg" width="100%"></img>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="#"><p>Ultra Responsive, Looks Great On Every Device</p></a>
+                    </div>
+                </div>
+
+                <div class="col-md-12 row margin_top margin_bottom">
+                    <div class="col-md-5">
+                        <img src="\assets\400.jpg" width="100%"></img>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="#"><p>Ultra Responsive, Looks Great On Every Device</p></a>
+                    </div>
+                </div>
+
+                <div class="col-md-12 row margin_top margin_bottom">
+                    <div class="col-md-5">
+                        <img src="\assets\400.jpg" width="100%"></img>
+                    </div>
+                    <div class="col-md-7">
+                        <a href="#"><p>Ultra Responsive, Looks Great On Every Device</p></a>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-md-12 margin_top margin_bottom bgclor">
+                <p style="font-size:20px; border-bottom: 2px solid #eee; margin-top:10px;">Categories</p>
+                <% Category.all.each do |cat| %>
+                    <a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;"><%= cat.category_name %></p></a>
+                <% end %>
+            </div>
+        </div>
+    </div>
 </div>
+
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Facebook</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Featured</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Inspiration</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Net</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Social</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee; margin-top:10px;">Sony</p></a>-->
+                <!--<a href="#"><p style="font-size:15px; border-bottom: 2px solid #eee;
+

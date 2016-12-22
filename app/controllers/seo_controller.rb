@@ -239,7 +239,7 @@ class SeoController < ApplicationController
 
           @variable=@seo.id
         else
-          flash[:error] = "Error to save data in seo model"
+          flash[:error] = "Error in saving data to seo model"
         end
 
         if @results.errors.length == 1

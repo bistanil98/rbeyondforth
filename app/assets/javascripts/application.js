@@ -11,31 +11,20 @@
 // about supported directives.
 
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-sprockets
 //= require jquery.turbolinks
 //= require jquery-ui/autocomplete
-//= require jquery_ujs
 //= require jquery.tokeninput
 //= require bootstrap/js/bootstrap.min
 //= require pagespeed
-//= require spin
+//= require ajax.spin
 //= require lazybox
-//= require google_analytics
+
 //= require autoload_fb
 //= require autoload_twtr
 //= require blogs
-//= require ajax.spin
-//= require admin/js/plugins/flot/excanvas.min
-//= require admin/js/plugins/flot/flot-data
-//= require admin/js/plugins/flot/jquery.flot
-//= require admin/js/plugins/flot/jquery.flot.pie
-//= require admin/js/plugins/flot/jquery.flot.resize
-//= require admin/js/plugins/flot/jquery.flot.tooltip.min
-//= require admin/js/plugins/morris/morris
-//= require admin/js/plugins/morris/morris.min
-//= require admin/js/plugins/morris/morris-data
-//= require admin/js/plugins/morris/raphael.min
 //= require turbolinks
 
 document.addEventListener("turbolinks:load", function() {

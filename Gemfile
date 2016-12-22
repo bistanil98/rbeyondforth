@@ -130,15 +130,15 @@ gem 'valid_url', '~> 0.0.2'
 
 gem 'spinjs-rails', '~> 1.4'
 
-gem 'lazybox', '~> 1.0', '>= 1.0.2'
+gem 'lazybox', '~> 1.0', '>= 1.0.2' #for rendering complete pages on to a bootstrap modal
 
-gem "paperclip", "~> 4.3"
+gem "paperclip", "~> 4.3" #for uploading images
 
 gem 'omniauth-linkedin-oauth2', '~> 0.1.5'
 
-gem "linkedin-oauth2", "~> 1.0"
+gem "linkedin-oauth2", "~> 1.0" #for linkedin authentication
 
-gem 'devise', '~> 3.5', '>= 3.5.10'
+gem 'devise', '~> 3.5', '>= 3.5.10' #for authentication and authorisation
 
 #gem 'google-adwords-api', '~> 0.18.0'
 
@@ -151,9 +151,15 @@ gem 'rake' , '~> 10.4.2', '>=10.4.2'
 gem 'rest-client', '~> 1.8'
 
 
-gem 'simple_form'
+gem 'simple_form' #used for better form ui with bootstrap functionality and auto labelling
 
-gem 'friendly_id', '~> 5.1.0'
+gem 'friendly_id', '~> 5.1.0' #used for converting the id's to the names
+
+# gem 'will_paginate', '~> 3.1', '>= 3.1.5' #used for pagination
+
+gem 'kaminari'
+
+
 
 gem 'rails_12factor', group: :production
 

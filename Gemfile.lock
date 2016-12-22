@@ -168,6 +168,9 @@ GEM
     jsonpath (0.5.7)
       multi_json
     jwt (1.5.1)
+    kaminari (0.17.0)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
     koala (2.2.0)
       addressable
       faraday
@@ -432,6 +435,7 @@ DEPENDENCIES
   jquery-rails
   jquery-turbolinks
   jquery-ui-rails
+  kaminari
   koala (~> 2.2.0)
   lazybox (~> 1.0, >= 1.0.2)
   legato (~> 0.6.2)

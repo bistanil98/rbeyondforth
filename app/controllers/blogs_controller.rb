@@ -5,16 +5,23 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def users_blog_index
-    @blogs = current_user.blogs.most_recent
+    @blogs = current_user.blogs.page(params[:page]).per(5).most_recent # gets the current users blog posts in descending order and paginating the results to 5 per page
   end
 
   def index
-    @blogs = Blog.most_recent
+    @blogs = Blog.page(params[:page]).per(5).most_recent #paginating the results to 5 per page
+    # gets the most_recent post or gets all the post in descending order from database.
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    #for counting the no. of post to show the popular posts in the index page.
+    @comments = @blog.comments.page(params[:page]).per(7).most_recent
+    @blog_visit =  @blog.blog_visit_count
+    @blog_visit+=1 #increments the no. of blog visit each time the blog is visited.
+    @blog.update(:blog_visit_count => @blog_visit)
+
   end
 
   # GET /blogs/new

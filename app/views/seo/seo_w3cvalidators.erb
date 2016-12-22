@@ -4,7 +4,7 @@
     <div class="pull-right" style="padding-bottom:8px;">
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalCompose" >Send Suggestion</button>
         <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalSend" >Compose Mail</button>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#modalExport">Export-Pdf/Excel</button>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#mymodal">Export-Pdf/Excel</button>
 
     </div>
 
@@ -52,6 +52,27 @@
 
 </div>
 
+<!-- test modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Modal Header</h4>
+            </div>
+            <div class="modal-body">
+                <p>Some text in the modal.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
 
 <!-- modal pop up for compose suggestion -->
 
@@ -97,11 +118,10 @@
 </div><!-- /.modal compose message -->
 
 <script>
-    <!--
 $('#modalCompose').on('shown.bs.modal', function () {
 $('#myInput').focus()
-})
-    -->
+});
+
 $('#pdffile').change(function(){
     $('#subfile').val($(this).val());
 });

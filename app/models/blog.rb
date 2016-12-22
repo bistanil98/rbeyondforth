@@ -34,15 +34,15 @@ class Blog < ActiveRecord::Base
   end
 
   def display_day_published
-    "Published: #{created_at.strftime('%-b %-d, %Y')}"
+    "#{created_at.strftime('%-b %-d, %Y')}"
   end
   def display_day_updated
-    "Updated: #{updated_at.strftime('%-b %-d, %Y')}"
+    "#{updated_at.strftime('%-b %-d, %Y')}"
   end
   def display_publisher_name
-    "Published By: #{user.name}"
+    "#{user.name}"
   end
   def display_publisher_email
-    "Publisher Email: #{user.email}"
+    "#{user.email}"
   end
 end

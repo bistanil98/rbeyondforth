@@ -1,9 +1,10 @@
-<%= simple_form_for([@blog, @blog.comments.build], :html => {novalidate: false}) do |f| %>
-
-    <p>
-        <%= f.input :comment_body, required: true%>
-    </p>
-    <p>
-        <%= f.submit %>
-    </p>
+<%= simple_form_for([@blog, @blog.comments.build],format: :js,remote: true,:html => {novalidate: false}) do |f| %>
+    <div id="commentsHolder">
+        <div class="commentBodyContainer">
+            <%= f.input :comment_body, required: true, placeholder: "Enter you Comment...", label: false%>
+        </div>
+    </div>
+    <div class="postCommentButtonHolder">
+        <%= f.button :submit, id: "postCommentSubmit", value: "Publish" %>
+    </div>
 <% end %>

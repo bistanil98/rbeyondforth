@@ -1,15 +1,19 @@
-<p>
-    <strong><%= comment.user.name if comment.user.present?%> </strong>
-    <%= comment.comment_body %>
 
-</p>
-<p>
-    <%= time_ago_in_words(comment.created_at)%> ago
-</p>
+<li class="margin_bottom">
+    <!-- this needs to be changed as the commenters profile image currently it is the profile image of blog post owner use comment.user.image.url istead of @blog.use.iamge.url-->
+    <div class="avatar-image-container"><%= image_tag @blog.user.image.url, :size => "46x46" %>"></div>
 
-<p>
-    <% if session[:user_id] == comment.user_id %>
-        <% puts "Current user is the comment author, curent user: #{session[:user_id]} | comment author: #{comment.user_id}" %>
-        <%= link_to 'Delete Comment', [comment.blog, comment], method: :delete, data: {confirm: "Are you sure"} %>
-    <%end%>
-</p>
+    <div class="comment-block">
+        <div class="comment-header" kind="m">
+            <cite class="user blog-author">
+                <b rel="nofollow" href="#"><%= comment.user.name.titleize %></b>
+            </cite>
+            <!--<span class="icon user blog-author">-->
+            <!--</span>-->
+            <span class="datetime">
+                <i><%= comment.created_at.strftime('%b %d, %Y at %I:%M %p')%></i>
+            </span>
+            <p class="comment-content"><%= comment.comment_body%></p>
+        </div>
+    </div>
+</li>
