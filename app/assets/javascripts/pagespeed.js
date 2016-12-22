@@ -24,8 +24,8 @@ function runPagespeed() {
         'key=' + API_KEY,
     ].join('&');
     s.src = API_URL + query;
-    alert(s.src);
-    //document.head.insertBefore(s, null);
+    //alert(s.src);
+    document.head.insertBefore(s, null);
 }
 
 // Our JSONP callback. Checks for errors, then invokes our callback handlers.
