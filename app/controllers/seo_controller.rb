@@ -37,6 +37,17 @@ class SeoController < ApplicationController
     end
   end
 
+  #method for getting the error data on clicking the website link shown as latest website checked
+  def get_error_data
+    id = params[:webid]
+    @errdata = Seo.find_by_id(id)
+    respond_to do |format|
+      format.html {redirect_to welcome_index_path}
+      format.js
+    end
+
+  end
+
   def suggestion
   render :layout => false
 
@@ -77,36 +88,48 @@ class SeoController < ApplicationController
     add_breadcrumb "seo meta tags", seo_get_meta_tags_path
   end
 
-=begin
-  def download_pdf
-    @product = User.all
 
-    pdf = Prawn::Document.new
-    table_data = Array.new
-    table_data << ["User name", "User email"]
-    @product.each do |p|
-      table_data << [p.name, p.email]
-    end
-    pdf.table(table_data, :width => 500, :cell_style => { :inline_format => true })
-    send_data pdf.render, filename: 'test.pdf', type: 'application/pdf', :disposition => 'inline'
-  end
-=end
   def download_pdf
     var_id=params[:var]
     @seo_list = Seo.find(var_id)
     puts @seo_list.site_uri
     pdf = Prawn::Document.new
+    logo = "/Applications/xampp/xamppfiles/htdocs/rbeyondforth/app/assets/images/logo.png"
+    pdf.image(logo, :position => :center)
+    pdf.text("\n\n\nBeyondforth\n", :align => :center, :size => 24)
+    pdf.text("\nA Soarlogic Information Technology Product\n\n", :align => :center, :size => 16)
+    pdf.text("\n\nContacts: \n\n", :align => :left,:style => :bold, :size => 14)
+    pdf.text("\nMr. Anil Bist: +919759129110\n", :align => :left)
+    pdf.text("\nMr. Sumit Kandwal: +919911090210\n", :align => :left)
+    pdf.text("\nMr. Ajay Simalti: +918979439999 \n\n", :align => :left)
+    pdf.start_new_page
+    pdf.text("\nYour W3C Validations Error Report\n\n", :align => :center, :size => 14)
+
     table_data = Array.new
     table_data << ["WebSite:", @seo_list.site_uri]
     table_data << ["W3C Validation", "Errors"]
     @data_array = (@seo_list.error_data).split("ERROR;")
     @i=0
     @data_array.each do |dr|
-      table_data << [@i,(dr.html_safe).delete('\\')]
+      if @i==0
+        # next
+      else
+        table_data << [@i,(dr.html_safe).delete('",\\')]
+      end
       @i=@i+1
     end
-    pdf.table(table_data, :width => 500, :cell_style => { :inline_format => true })
-    send_data pdf.render, filename:'test.pdf', type:'application/pdf', :disposition => 'inline'
+
+    pdf.repeat :all do
+
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 15], :width  => pdf.bounds.width do
+        pdf.stroke_horizontal_rule
+        pdf.move_down(5)
+        pdf.text "https://www.beyondforth.com - A Soarlogic Information Technology Product", :size => 10, :align => :right
+      end
+    end
+    # puts pdf.table(table_data).height
+    pdf.table(table_data, :width => 500, :height => 700, :cell_style => { :inline_format => true })
+    send_data pdf.render, filename:'W3cValidationReport.pdf', type:'application/pdf', :disposition => 'inline'
   end
 
   def download

@@ -13,46 +13,51 @@
 
     <div class="container-fluid">
         <div class="row well" id="r2">
-            <div class="col-md-12">
+            <div class="col-md-6">
                 <div class="col-md-3"><h4>Website</h4></div>
-                <div class="col-md-9" id="font"><%= @seo.site_uri %></div>
+                <div class="col-md-9" id="font"><%= @errdata.site_uri %></div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-4"><h4>W3C Validation</h4></div>
+                <div class="col-md-8" id="font"><%= @errdata.errnum %> Errors found.</div>
             </div>
         </div>
 
-        <div class="row well" id="r">
-            <div class="col-md-12">
-                <div class="col-md-3"><h4>W3C Validation</h4></div>
-                <div class="col-md-9" id="font"><%= @seo.errnum %> Errors found.</div>
-            </div>
-        </div>
     </div>
 
     <!-- W3c validation errors -->
-    <% if  @results.errors.length > 0
-         @results.errors.each do |err| %>
-            <div>
-          <!--  <div class="panel panel-default part_margin" style="border: 1px solid #f5f5f5;"> -->
+    <% if  @errdata.error_data.length > 0
+         @data_array = (@errdata.error_data).split("ERROR;")
+         @i=0
+         @data_array.each do |error|
+           if @i==0
+            # next
+           else %>
+                <div>
+               <!--  <div class="panel panel-default part_margin" style="border: 1px solid #f5f5f5;"> -->
 
-                <table class="table  well" style="margin-top:-6px; margin-bottom:-6px;">
-                    <tr style="margin-top:-15px;" class="tab_head ">
+               <table class="table  well" style="margin-top:-6px; margin-bottom:-6px;">
+               <tr style="margin-top:-15px;" class="tab_head ">
 
-                          <td><%= err %></td>
+               <td><%= @i %>. Error: <%= (error.html_safe).delete('",\\') %></td>
 
-                    </tr>
-                 </table>
+                </tr>
+                </table>
 
-            </div>
+                </div>
+          <%end
+           @i=@i+1%>
+
+
         <%  end
-    else
-        puts 'Valid!'
-    end %>
-  <div class="clearfix"></div>
+            else
+              puts 'Valid!'
+            end %>
+    <div class="clearfix"></div>
 </div>
 <div style="padding-bottom:40px;">
 
 </div>
-
-<!-- test modal -->
 
 
 
@@ -80,12 +85,12 @@
                         <div class="col-sm-12"><textarea class="form-control" id="inputBody" rows="10"></textarea></div>
                     </div>
                     <div class="form-group" >
-                    <input type="file" name="file" style="visibility:hidden;" id="pdffile" /><br/>
+                        <input type="file" name="file" style="visibility:hidden;" id="pdffile" /><br/>
                         <label class="col-sm-2" for="inputTo">Attach file</label>
-                    <div class="input-append col-sm-10">
-                        <input type="text" name="subfile" id="subfile" class="input-xlarge">
-                        <a class="btn" onclick="$('#pdffile').click();">Browse</a>
-                    </div>
+                        <div class="input-append col-sm-10">
+                            <input type="text" name="subfile" id="subfile" class="input-xlarge">
+                            <a class="btn" onclick="$('#pdffile').click();">Browse</a>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -100,13 +105,13 @@
 </div><!-- /.modal compose message -->
 
 <script>
-$('#modalCompose').on('shown.bs.modal', function () {
-$('#myInput').focus()
-});
+    $('#modalCompose').on('shown.bs.modal', function () {
+        $('#myInput').focus()
+    });
 
-$('#pdffile').change(function(){
-    $('#subfile').val($(this).val());
-});
+    $('#pdffile').change(function(){
+        $('#subfile').val($(this).val());
+    });
 </script>
 
 <!-- end of modal popup compose -->
@@ -122,8 +127,8 @@ $('#pdffile').change(function(){
             </div>
             <div class="modal-body">
                 <p style="padding-left:40px; ">
-                    <%= link_to 'Export PDf file', seo_download_pdf_path(:var => @variable), :class => 'btn btn-primary', target: '_blank'%>
-                    <%= link_to 'Export Excel file' ,seo_download_path(format: 'xlsx', :var => @variable), :class => 'btn btn-primary'%>
+                    <%= link_to 'Export PDf file', seo_download_pdf_path(:var => @errdata.id), :class => 'btn btn-primary', target: '_blank'%>
+                    <%= link_to 'Export Excel file' ,seo_download_path(format: 'xlsx', :var => @errdata.id), :class => 'btn btn-primary'%>
                 </p>
             </div>
             <div class="modal-footer">
@@ -146,7 +151,7 @@ $('#pdffile').change(function(){
                 <div class="form-sendmail">
                     <%= form_tag users_forgot_password_send_email_path  do %>
                         <div>
-                        <%= label_tag :To %></br>
+                            <%= label_tag :To %></br>
                             <%=  email_field_tag 'email',  'example@email.com', size: 45 %></br></br>
                             <%= label_tag :Subject %></br>
                             <%= text_field_tag 'address', '', size: 45 %></br></br>
@@ -156,24 +161,23 @@ $('#pdffile').change(function(){
                             <%= file_field_tag :file %>
                             <!-- <%= submit_tag "Upload" %>-->
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
-                             <%= submit_tag 'Compose Mail',:class=> "btn btn-primary pull-right" %>
-                             </div>
+                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                                <%= submit_tag 'Compose Mail',:class=> "btn btn-primary pull-right" %>
+                            </div>
                         </div>
-                <% end %>
+                    <% end %>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
 <script>
-    <!--
+
     $('#modalSend').on('shown.bs.modal', function () {
         $('#myInput').focus()
     })
-    -->
     $('#pdffile').change(function(){
         $('#subfile').val($(this).val());
     });

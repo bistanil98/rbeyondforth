@@ -19,7 +19,7 @@
 //= require jquery.tokeninput
 //= require bootstrap/js/bootstrap.min
 //= require pagespeed
-//= require ajax.spin
+
 //= require lazybox
 
 //= require autoload_fb

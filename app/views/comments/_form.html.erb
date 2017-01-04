@@ -1,4 +1,4 @@
-<%= simple_form_for([@blog, @blog.comments.build],format: :js,remote: true,:html => {novalidate: false}) do |f| %>
+<%= simple_form_for([@blog, @blog.comments.build],remote: true,:html => {novalidate: false}) do |f| %>
     <div id="commentsHolder">
         <div class="commentBodyContainer">
             <%= f.input :comment_body, required: true, placeholder: "Enter you Comment...", label: false%>

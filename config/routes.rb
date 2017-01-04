@@ -143,6 +143,8 @@ Rails.application.routes.draw {
 
   get 'seo/get_seo_w3cvalidators'
 
+  get 'seo/get_error_data'
+
   get 'seo/get_post_page_rank'
 
   post 'seo/modal'
@@ -177,7 +179,7 @@ Rails.application.routes.draw {
 
   get 'seo/get_seo_report'
 
-  get "/" => "users#login", :as => "root"
+  get "/" => "welcome#index", :as => "root"
 
   "map.webmaster_verification"
 

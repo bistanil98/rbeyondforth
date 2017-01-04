@@ -2,7 +2,11 @@
     <div class="col-md-3">
         <div style="margin: 0 12px;padding: 4px 0;position: relative;">
             <div class="" style="padding-top: 3px;">
-                <%= image_tag(@user.image, :alt => "user image",:class=>"img-circle id_img") %>
+                <% if @user.image.to_s != "/images/original/missing.png" %>
+                    <%= image_tag(@user.image, :alt => "user image",:class=>"img-circle id_img") %>
+                <% else %>
+                    <%= image_tag("defaultuserimage.jpg", :alt => "user image",:class=>"img-circle id_img") %>
+                <% end %>
             </div>
             <div style="padding-top:19px;">
                 <%= link_to 'Change Picture', "#", data: {toggle: "modal", target: "#modalImage"},  class: 'btn btn-primary btn-xs'%>

@@ -6,7 +6,7 @@ wb.add_worksheet(name: "seo_list") do |sheet|
     @data_array = (@seo_list.error_data).split("ERROR;")
         @i=0
           @data_array.each do |error|
-                sheet.add_row [@i, (error.html_safe).delete('\\')]
+                sheet.add_row [@i, (error.html_safe).delete('",\\')]
          @i=@i+1
     end
 end

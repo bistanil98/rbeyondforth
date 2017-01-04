@@ -14,8 +14,9 @@
         <% i=1 %>
         <% @result.each do |d| %>
             <tr class="active">
+                <% @webid = d.id %>
                 <td><%= i %></td>
-                <td><%= d.site_uri %></td>
+                <td><%=link_to d.site_uri, seo_get_error_data_path(:webid => @webid) , remote: true%></td>
                 <td><%= d.created_at %></td>
                 <td><%= d.errnum %></td>
             </tr>
