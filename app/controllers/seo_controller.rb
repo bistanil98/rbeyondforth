@@ -94,7 +94,8 @@ class SeoController < ApplicationController
     @seo_list = Seo.find(var_id)
     puts @seo_list.site_uri
     pdf = Prawn::Document.new
-    logo = "/Applications/xampp/xamppfiles/htdocs/rbeyondforth/app/assets/images/logo.png"
+    logo = Rails.root.join('app', 'assets', 'images', 'logo.png').to_s
+    puts "path = #{logo}"
     pdf.image(logo, :position => :center)
     pdf.text("\n\n\nBeyondforth\n", :align => :center, :size => 24)
     pdf.text("\nA Soarlogic Information Technology Product\n\n", :align => :center, :size => 16)
@@ -103,7 +104,7 @@ class SeoController < ApplicationController
     pdf.text("\nMr. Sumit Kandwal: +919911090210\n", :align => :left)
     pdf.text("\nMr. Ajay Simalti: +918979439999 \n\n", :align => :left)
     pdf.start_new_page
-    pdf.text("\nYour W3C Validations Error Report\n\n", :align => :center, :size => 14)
+    # pdf.text("\nYour W3C Validations Error Report\n\n", :align => :center, :size => 14)
 
     table_data = Array.new
     table_data << ["WebSite:", @seo_list.site_uri]
@@ -121,14 +122,22 @@ class SeoController < ApplicationController
 
     pdf.repeat :all do
 
-      pdf.bounding_box [pdf.bounds.left, pdf.bounds.bottom + 15], :width  => pdf.bounds.width do
+      pdf.bounding_box [pdf.bounds.left, pdf.bounds.top], :width  => pdf.bounds.width do
+        # pdf.move_down(5)
+
+        # pdf.move_down(3)
+        # pdf.text "BeyondForth", :size => 10, :align => :left,
+        pdf.text "BeyondForth \t\t\t\t\t http://www.beyondforth.com \t Soarlogic Information Technology", :size => 14, :align => :left
+        # pdf.text "A Soarlogic Information Technology Product", :size => 10, :align => :right
+        pdf.move_down(3)
         pdf.stroke_horizontal_rule
-        pdf.move_down(5)
-        pdf.text "https://www.beyondforth.com - A Soarlogic Information Technology Product", :size => 10, :align => :right
+        pdf.move_down(10)
       end
     end
     # puts pdf.table(table_data).height
-    pdf.table(table_data, :width => 500, :height => 700, :cell_style => { :inline_format => true })
+    pdf.bounding_box [pdf.bounds.left, pdf.bounds.top - 20], :width  => pdf.bounds.width do
+      pdf.table(table_data, :width => 500 , :cell_style => { :inline_format => true })
+    end
     send_data pdf.render, filename:'W3cValidationReport.pdf', type:'application/pdf', :disposition => 'inline'
   end
 
