@@ -1,27 +1,2 @@
 <%= render "seo/get_seo_w3cvalidators" %>
 <!-- latest 5 checked websites -->
-<div class="bs-example">
-    <table class="table">
-        <caption><h3>Latest 5 websites checked for validations</h3></caption>
-        <thead>
-        <tr class="info">
-            <th>S.No.</th>
-            <th>Site Name</th>
-            <th>Visit Date & Time</th>
-            <th>Validation Errors</th>
-        </tr>
-        </thead>
-        <tbody>
-        <% i=1 %>
-        <% @result.each do |d| %>
-            <tr class="active">
-                <td><%= i %></td>
-                <td><%= d.site_uri %></td>
-                <td><%= d.created_at %></td>
-                <td><%= d.errnum %></td>
-            </tr>
-            <% i=i+1 %>
-        <% end %>
-        </tbody>
-    </table>
-</div>
