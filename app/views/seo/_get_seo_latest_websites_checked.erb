@@ -1,12 +1,12 @@
 <div class="bs-example">
     <table class="table">
-        <caption><h3>Latest 10 websites checked for validations</h3></caption>
+        <caption><h3>Latest <%= @result.count %> websites checked for validations</h3></caption>
         <thead>
         <tr class="info">
             <th>S.No.</th>
             <th>Site Name</th>
-            <th>Visit Date & Time</th>
             <th>Validation Errors</th>
+            <th>Visit Date & Time</th>
         </tr>
         </thead>
         <tbody>
@@ -17,8 +17,8 @@
                 <% @webid = d.id %>
                 <td><%= i %></td>
                 <td><%=link_to d.site_uri, seo_get_error_data_path(:webid => @webid) , remote: true%></td>
-                <td><%= d.created_at %></td>
                 <td><%= d.errnum %></td>
+                <td><%= d.created_at %></td>
             </tr>
             <% i=i+1 %>
         <% end %>
