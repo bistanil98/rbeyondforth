@@ -26,16 +26,14 @@
                             <h4 class="modal-title">Add Website</h4>
                         </div>
                         <div class="modal-body">
-                            <%= simple_form_for(User,remote: true,:html => {novalidate: false}) do |f| %>
                                 <div class="col-md-12 col-sm-12 col-xs-12" style="display: inline-block">
                                     <div class="col-md-10 col-sm-10 col-xs-10">
-                                        <%= f.input :website_url, required: true, placeholder: "Enter you website URL...", label: false%>
+                                        <input type="text" placeholder="Enter your websiter URL " style="width: 100%;"/>
                                     </div>
                                     <div class="col-md-2 col-sm-2 col-xs-2">
-                                        <%= f.button :submit, id: "submitweburl", value: "Publish" %>
+                                        <input type="button" value="Add" class="btn btn-primary btn-xs"/>
                                     </div>
                                 </div>
-                            <% end %>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
