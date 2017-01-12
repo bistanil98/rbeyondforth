@@ -4,12 +4,12 @@
 <head>
     <title>Rbeyondforth</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track' => false %>
-    <%= javascript_include_tag 'application',  media: 'all','data-turbolinks-track' => false %>
+    <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application',  media: 'all','data-turbolinks-track' => true %>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 </head>
-<body data-turbolinks="false"><!-- disabling turbolinks for proper working of gooogle analytics code -->
+<body><!-- disable turbolinks by adding (data-turbolinks="false") for proper working of gooogle analytics code if not already -->
 <div>
     <%= render "common/header" %>
 </div>

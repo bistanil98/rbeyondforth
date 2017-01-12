@@ -1,7 +1,11 @@
 
 <li class="margin_bottom">
     <!-- this needs to be changed as the commenters profile image currently it is the profile image of blog post owner use comment.user.image.url istead of @blog.use.iamge.url-->
-    <div class="avatar-image-container"><%= image_tag @blog.user.image.url, :size => "46x46" %>"></div>
+    <% if @blog.user.image.to_s != "/images/original/missing.png" %>
+        <div class="avatar-image-container"><%= image_tag comment.user.image.url, :size => "46x46" %></div>
+    <%else%>
+        <div class="avatar-image-container"><%= image_tag("defaultuserimage.jpg", :alt => "#{comment.user.name}",:height => 46,:width => 46) %></div>
+    <%end %>
 
     <div class="comment-block">
         <div class="comment-header" kind="m">

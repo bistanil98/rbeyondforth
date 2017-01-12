@@ -27,7 +27,14 @@
 
                 <div class="auth-panel col-md-12">
                     <div class="col-md-3">
-                        <img alt="<%=@blog.user.name %>" class="author_avatar" height="96" src="<%= @blog.user.image%>" width="96">
+                        <% if @blog.user.image.to_s != "/images/original/missing.png"
+                             # puts @user.image
+                        %>
+                            <%= image_tag(@blog.user.image, :alt => "#{@blog.user.name}",:class=>"author_avatar",:height => 96,:width => 96) %>
+                        <% else %>
+                            <%= image_tag("defaultuserimage.jpg", :alt => "#{@blog.user.name}",:class=>"author_avatar",:height => 96,:width => 96) %>
+                        <% end %>
+
                     </div>
                     <div class="col-md-9">
                         <h4>About <%= @blog.user.name.titleize%></h4>
