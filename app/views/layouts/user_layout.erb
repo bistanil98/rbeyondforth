@@ -23,14 +23,11 @@
 <div id="mainwall" style="min-height: 600px;">
     <div id="flash" class="container">
         <% flash.each do |name, msg| %>
-            <div class="alert alert-<%=name == :notice ? "success" : "danger"%>">
-                <a class="close" data-dismiss="alert" style="margin-top: 5px;">x</a>
-                <%= content_tag :div, msg, class: "alert alert-info" %>
-            </div>
+            <%= content_tag :div, msg, class: "alert alert-info" %>
         <% end %>
     </div>
-    <div class="row">
-        <div class="col-md-3 col-xs-3" style="padding-left:65px;">
+    <div>
+        <div class="col-md-3 col-xs-3">
             <%= render "left_menu" %>
         </div>
         <div class="col-md-6 media well ">

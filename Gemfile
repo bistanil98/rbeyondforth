@@ -38,6 +38,7 @@ gem 'jquery-ui-rails'
 gem 'jquery-turbolinks'
 
 gem 'PageRankr'
+
 #gem 'activeadmin'
 gem  'seo_params'
 gem  'rsolr'

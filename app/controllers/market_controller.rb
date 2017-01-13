@@ -1,6 +1,6 @@
 class MarketController < ApplicationController
 
-  layout 'market_layout', :only => [:market_basic_dashboard, :market_interactive_charts, :market_multiple_views]
+  layout 'market_layout', :except => [:index]
 
   before_action :require_login
   def market_grade

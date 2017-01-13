@@ -17,18 +17,18 @@
     <%= render "common/tab" %>
     <%= render_breadcrumbs ('>') %>
 
-<div class="container" style="min-height: 600px;">
-    <div id="flash" >
+<div style="min-height: 600px;">
+    <div id="flash" class="container">
         <% flash.each do |name, msg| %>
             <%= content_tag :div, msg, class: "alert alert-info" %>
         <% end %>
     </div>
-    <div class="row">
-        <div class="col-md-3  well" >
+    <div>
+        <div class="col-md-3 col-xs-3" >
             <%= render :partial => "common/seo_left_menu" %>
         </div>
-        <div class="col-md-9 media" style="margin-top:3px;">
-        <%= yield %>
+        <div class="col-md-9 col-xs-9">
+            <%= yield %>
         </div>
     </div>
 </div>

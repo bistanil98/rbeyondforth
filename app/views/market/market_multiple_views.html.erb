@@ -6,11 +6,24 @@
         fs.parentNode.insertBefore(js, fs); js.onload = function () { g.load('analytics'); };
     }(window, document, 'script'));
 </script>
-<div id="embed-api-auth-container"></div>
-<div id="chart-1-container"></div>
-<div id="chart-2-container"></div>
-<div id="view-selector-1-container"></div>
-<div id="view-selector-2-container"></div>
+    <div class="col-md-12 well">
+        <div id="embed-api-auth-container" style="text-align: center;font-size: 18px;font-weight: bold"></div>
+    </div><br />
+
+     <div class="col-md-12 well">
+         <div id="view-selector-1-container" style="line-height: 2;"></div><br/>
+         <div id="chart-1-container"></div>
+     </div>
+
+     <div class="col-md-12 well">
+         <div id="view-selector-2-container"></div><br/>
+         <div id="chart-2-container"></div>
+     </div>
+
+
+
+
+
 <script>
 
     gapi.analytics.ready(function () {
@@ -31,7 +44,10 @@
          * element with the id "view-selector-1-container".
          */
         var viewSelector1 = new gapi.analytics.ViewSelector({
-            container: 'view-selector-1-container'
+            container: 'view-selector-1-container',
+            options: {
+                top: "10px"
+            }
         });
 
         /**

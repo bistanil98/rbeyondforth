@@ -4,9 +4,9 @@
 <head>
     <title>Rbeyondforth</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= stylesheet_link_tag    'application', media: 'all','data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application',  media: 'all','data-turbolinks-track' => true %>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= csrf_meta_tags %>
 </head>
 <body><!-- disable turbolinks by adding (data-turbolinks="false") for proper working of gooogle analytics code if not already -->
@@ -19,17 +19,19 @@
 
 </div>
 
-<div id="mainwall" style="min-height: 600px;">
+<div style="min-height: 600px; overflow-y: scroll;">
     <div id="flash" class="container">
         <% flash.each do |name, msg| %>
-            <div class="alert alert-<%=name == :notice ? name == :notice ? "info" : "success" : "danger"%>">
-                <a class="close" data-dismiss="alert" style="align-content: center">x</a>
-                <%= msg %>
-            </div>
+            <%= content_tag :div, msg, class: "alert alert-info" %>
         <% end %>
     </div>
-    <div style="padding-top: 10px;">
-        <%= yield %>
+    <div>
+        <div class="col-md-3 col-xs-3" >
+            <%= render :partial => "common/market_left_menu" %>
+        </div>
+        <div class="col-md-9 col-xs-9">
+            <%= yield %>
+        </div>
     </div>
 </div>
 

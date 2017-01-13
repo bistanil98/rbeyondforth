@@ -1,0 +1,39 @@
+<div class="well" style="display:inline-block;">
+    <h4 style="text-decoration: underline;">Market Analysis</h4>
+    <ul class="list-unstyled pramotion-links">
+        <li>
+            <%= link_to 'Web Master Tool', market_index_path %>
+        </li>
+
+        <li data-turbolinks="false"><a href=<%="#{market_market_basic_dashboard_path}"%>>Google analytics</a>
+            <ul class="">
+                <li data-turbolinks="false">
+                    <%= link_to 'Basic Dashboard', market_market_basic_dashboard_path %>
+                </li>
+                <li data-turbolinks="false">
+                    <%= link_to 'Interactive Charts', market_market_interactive_charts_path %>
+                </li>
+                <li data-turbolinks="false">
+                    <%= link_to 'Multiple Views', market_market_multiple_views_path %>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <%=link_to 'Facebook Pixel', market_facebook_pixel_path%>
+        </li>
+
+        <li>
+            <%= link_to 'Market Grade', market_market_grade_path %>
+        </li>
+        <li>
+            <%= link_to 'Market Grade Report', market_market_grade_report_path %>
+        </li>
+        <li>
+            <%= link_to 'Events', market_market_grade_path %>
+        </li>
+        <li>
+            <%= link_to 'Competitors', market_competitors_path %>
+        </li>
+    </ul>
+
+</div>
