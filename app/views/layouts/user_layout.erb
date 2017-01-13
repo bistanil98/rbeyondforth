@@ -23,16 +23,18 @@
 <div id="mainwall" style="min-height: 600px;">
     <div id="flash" class="container">
         <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, class: "alert alert-info" %>
+            <div class="alert alert-<%=name == :notice ? "success" : "danger"%>">
+                <a class="close" data-dismiss="alert" style="margin-top: 5px;">x</a>
+                <%= content_tag :div, msg, class: "alert alert-info" %>
+            </div>
         <% end %>
     </div>
-    <div>
-        <div class="col-md-3 col-xs-3">
-            <%= render "left_menu" %>
-        </div>
-        <div class="col-md-6 media well ">
+
+    <div class="col-md-3 col-xs-3 col-sm-9">
+        <%= render "left_menu" %>
+    </div>
+    <div class="col-md-9 col-xs-9 col-sm-9">
             <%= yield %>
-        </div>
     </div>
 </div>
 
